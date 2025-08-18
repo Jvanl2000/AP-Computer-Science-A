@@ -7,3 +7,14 @@
             Error: Main method not found in class main, please define the main method as:
                 public static void main(String[] args)
             or a JavaFX application class must extend javafx.application.Application
+
+    static
+        When I omit 'static' from the 'main' method header I get a runtime exception.
+            Error: Main method is not static in class section, please define the main method as:
+                public static void main(String[] args)
+
+    void
+        When I omit 'void' from the 'main' method header I get a compiler error.
+            Error: Main method not found in class section, please define the main method as:
+                public static void main(String[] args)
+            or a JavaFX application class must extend javafx.application.Application
