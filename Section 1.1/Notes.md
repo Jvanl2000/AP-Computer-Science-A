@@ -137,4 +137,8 @@ Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: Index 0 out
 ```
 - THis exception is thrown because if `args` is empty (no command line arguments are used), Java is unable to print a `null` value.
 
-
+## 1.1.6 — Method `UseThree`
+- Method name: `UseThree`
+- Inputs: `String[] args`
+- Returns: `None`
+- Description: Print the string `"{args[2]}, {args[1]}, and {args[0]} are learning Java!"` to the console. This method prints the names in reverse order.
