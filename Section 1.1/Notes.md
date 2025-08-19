@@ -83,12 +83,10 @@ section.java:2: error: cannot find symbol
 
 ## 1.1.4 — What happens if you put double quotes on separate lines
 - When running this example code, you will receive the following exception
-- Code
 ```java
 System.out.println("Hello,
                         World");
 ```
-- Exception
 ```
 section.java:3: error: unclosed string literal
         System.out.println("Hello,
