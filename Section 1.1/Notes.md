@@ -1,26 +1,27 @@
-1.1.1 - Method named 'HelloWorld' prints "Hello, World!" 10 times to the console
+# 1.1 — You First Program!
 
-1.1.2 - What happens if you omit
-public
-When you omit 'public' from the class definition nothing happens.
-When you omit 'public' from the 'main' function definition you get a runtime error.
+## 1.1.2 — What happens when you omit modifiers/keywords from the `main` method or class
+
+### `public`
+- Omitting `public` from the **class** definition has no effect on the code execution.
+- Omitting `public` from the **`main` method** will result in a runtime exception such as:
 ```
 Error: Main method not found in class main, please define the main method as:
-  public static void main(String[] args)
+    public static void main(String[] args)
 or a JavaFX application class must extend javafx.application.Application
 ```
 
-static
-When I omit 'static' from the 'main' method header I get a runtime exception.
+### `static`
+- If the `main` method is not declared `static` you will recieve a runtime error such as: 
 ```
-Error: Main method is not static in class section, please define the main method as:
-  public static void main(String[] args)
+Error: Main method is not static in class <classname>, please define the main method as:
+    public static void main(String\[] args)
 ```
 
-void
-When I omit ```void``` from the 'main' method header I get a compiler error.
+### `void`
+- If `main` does not have a `void` return type, the compiler will throw and exception such as:
 ```
-Error: Main method not found in class section, please define the main method as:
-  public static void main(String[] args)
+Error: Main method not found in class <classname>, please define the main method as:
+    public static void main(String\[] args)
 or a JavaFX application class must extend javafx.application.Application
-```
+````
