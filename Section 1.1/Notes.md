@@ -99,3 +99,42 @@ section.java:4: error: not a statement
                                 ^
 3 errors
 ```
+
+## 1.1.5 — Method `UseArgument`
+- Method name: `UseArgument`
+- Inputs: `String[] args`
+- Returns: `None`
+- Description: Print the string `"Hi, {args[0]}, how are you?"` to the console.
+### Test Cases
+```
+java UseArgument java
+Hi, java, how are you?
+```
+```
+java UseArgument @!&^%
+bash: !: event not found
+```
+- This exception still presists even if the command line argument is given within double quotation marks.
+```
+java UseArgument 1234
+Hi, 1234, how are you?
+```
+```
+java UseArgument.java Bob
+Hi, Bob, how are you?
+```
+- Even if the java file is not compiled it still runs, I suspect that it is compiled into memory and never saved.
+```
+java UseArgument Alice Bob
+Hi, Alice, how are you?
+```
+- When this method is provided two command line arguments it ignores the second one because the only argument it uses is `args[0]`.
+```
+java UseArgument
+Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: Index 0 out of bounds for length 0
+        at section.UseArgument(section.java:8)
+        at section.main(section.java:4)
+```
+- THis exception is thrown because if `args` is empty (no command line arguments are used), Java is unable to print a `null` value.
+
+
