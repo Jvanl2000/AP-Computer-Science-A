@@ -1,5 +1,11 @@
 # 1.1 — Your First Program!
 
+## 1.1.1 — Method `HelloWorld`
+- Method name: `HelloWorld`
+- Inputs: `None`
+- Returns: `None`
+- Description: Print the string `"Hello, World!"` to the console 10 times.
+
 ## 1.1.2 — What happens when you omit modifiers/keywords from the **`main` method** or class
 
 ### `public`
