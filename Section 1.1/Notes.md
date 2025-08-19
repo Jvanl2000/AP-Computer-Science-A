@@ -4,7 +4,7 @@
 - Method name: `HelloWorld`
 - Inputs: `None`
 - Returns: `None`
-- Description: Print the string `"Hello, World!"` to the console 10 times.
+- Description: This method prints the string `"Hello, World!"` to the console 10 times.
 
 ## 1.1.2 — What happens when you omit modifiers/keywords from the **`main` method** or class
 
@@ -104,7 +104,7 @@ section.java:4: error: not a statement
 - Method name: `UseArgument`
 - Inputs: `String[] args`
 - Returns: `None`
-- Description: Print the string `"Hi, {args[0]}, how are you?"` to the console.
+- Description: This method prints the string `"Hi, {args[0]}, how are you?"` to the console.
 ### Test Cases
 ```
 java UseArgument java
@@ -141,4 +141,4 @@ Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: Index 0 out
 - Method name: `UseThree`
 - Inputs: `String[] args`
 - Returns: `None`
-- Description: Print the string `"{args[2]}, {args[1]}, and {args[0]} are learning Java!"` to the console. This method prints the names in reverse order.
+- Description: This method prints the string `"{args[2]}, {args[1]}, and {args[0]} are learning Java!"` to the console. This method prints the names in reverse order.
