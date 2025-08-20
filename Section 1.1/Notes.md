@@ -8,6 +8,15 @@
 
 ## 1.1.2 — What happens when you omit modifiers/keywords from the **`main` method** or class
 
+### Example Code
+```java
+public class MyProgram {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+    }
+}
+```
+
 ### `public`
 - Omitting `public` from the **class** definition does not affect the code execution.
 - Omitting `public` from the **`main` method** will result in a runtime exception such as:
@@ -28,25 +37,34 @@ Error: Main method is not static in class <classname>, please define the main me
 - If `main` does not have a `void` return type, the compiler will throw an exception such as:
 ```
 Error: Main method not found in class <classname>, please define the main method as:
-    public static void main(String\[] args)
+    public static void main(String[] args)
 or a JavaFX application class must extend javafx.application.Application
 ````
 
 ### `args`
 - If the variable name `args` is omitted from the `main` function header, you will receive a compiler exception such as:
 ```
-Error: Main method not found in class section, please define the main method as:
+Error: Main method not found in class MyProgram, please define the main method as:
     public static void main(String[] args)
 or a JavaFX application class must extend javafx.application.Application
 ```
 
 ## 1.1.3 — What happens when you omit the 2nd letter of modifiers/keywords from the **`main` method** or **class**
 
+### Example Code
+```java
+public class MyProgram {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+    }
+}
+```
+
 ### `public`
 - Omitting the 2nd letter from the keyword `public` in the **class** definition will result in a compiler error such as:
 ```
 section.java:1: error: class, interface, enum, or record expected
-pblic class section {
+pblic class MyProgram {
 ^
 1 error
 ```
@@ -82,11 +100,18 @@ section.java:2: error: cannot find symbol
 - Omitting the 2nd letter from the argument `args` in the **`main` method** does not affect this code because this code does not reference that variable. If this code were to reference that variable, all other copies of the variable name would have to be refactored.
 
 ## 1.1.4 — What happens if you put double quotes on separate lines
-- When running this example code, you will receive the following exception
+
+### Example Code
+
 ```java
-System.out.println("Hello,
-                        World");
+public class MyProgram {
+    public static void main(String[] args) {
+        System.out.println("Hello,
+                                World");
+    }
+}
 ```
+### Exception
 ```
 section.java:3: error: unclosed string literal
         System.out.println("Hello,
