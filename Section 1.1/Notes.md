@@ -51,6 +51,19 @@ MyProgram.java:2: error: <identifier> expected
 1 error
 ```
 
+### `main`
+### `String`
+### `MyProgram`
+### `System.out`
+### `println`
+### the ;
+### the first "
+### the second "
+### the first {
+### the second {
+### the first }
+### the second }
+
 ## 1.1.3 — What happens when you omit the 2nd letter of modifiers/keywords from the **`main` method** or **class**
 
 ### Example Code
@@ -70,6 +83,7 @@ pblic class MyProgram {
 ^
 1 error
 ```
+
 - Omitting the 2nd letter from the keyword `public` in the **`main` method** will result in a compiler error such as:
 ```
 MyProgram.java:2: error: <identifier> expected
