@@ -65,14 +65,14 @@ public class MyProgram {
 ### `public`
 - Omitting the 2nd letter from the keyword `public` in the **class** definition will result in a compiler error such as:
 ```
-section.java:1: error: class, interface, enum, or record expected
+MyProgram.java:1: error: class, interface, enum, or record expected
 pblic class MyProgram {
 ^
 1 error
 ```
 - Omitting the 2nd letter from the keyword `public` in the **`main` method** will result in a compiler error such as:
 ```
-section.java:2: error: <identifier> expected
+MyProgram.java:2: error: <identifier> expected
     pblic static void main(String[] args) {
          ^
 1 error
@@ -81,7 +81,7 @@ section.java:2: error: <identifier> expected
 ### `static`
 - Omitting the 2nd letter from the keyword `static` in the **`main` method** will result in a compiler error such as:
 ```
-section.java:2: error: <identifier> expected
+MyProgram.java:2: error: <identifier> expected
     public satic void main(String[] args) {
                 ^
 1 error
@@ -90,11 +90,11 @@ section.java:2: error: <identifier> expected
 ### `void`
 - Omitting the 2nd letter from the keyword `static` in the **`main` method** will result in a compiler error such as:
 ```
-section.java:2: error: cannot find symbol
+MyProgram.java:2: error: cannot find symbol
     public static vid main(String[] args) {
                   ^
   symbol:   class vid
-  location: class section
+  location: class MyProgram
 1 error
 ```
 
@@ -113,15 +113,15 @@ public class MyProgram {
     }
 }
 ```
-### Exception
+### Compiler Exception
 ```
-section.java:3: error: unclosed string literal
+MyProgram.java:3: error: unclosed string literal
         System.out.println("Hello,
                            ^
-section.java:4: error: unclosed string literal
+MyProgram.java:4: error: unclosed string literal
                                 World");
                                      ^
-section.java:4: error: not a statement
+MyProgram.java:4: error: not a statement
                                 World");
                                 ^
 3 errors
@@ -159,10 +159,9 @@ Hi, Alice, how are you?
 ```
 java UseArgument
 Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: Index 0 out of bounds for length 0
-        at section.UseArgument(section.java:8)
-        at section.main(section.java:4)
+        at UseArgument.main(UseArgument.java:3)
 ```
-- THis exception is thrown because if `args` is empty (no command line arguments are used), Java is unable to print a `null` value.
+- This exception is thrown because if `args` is empty (no command line arguments are used), Java is unable to print a `null` value.
 
 ## 1.1.6 — Method `UseThree`
 - Method name: `UseThree`
