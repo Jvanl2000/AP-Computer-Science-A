@@ -2,7 +2,17 @@ public class section {
     public static void main(String[] args) {
         // HelloWorld();
         // UseArgument(args);
-        UseThree(args);
+        // UseThree(args);
+        permutations(args);
+    }
+
+    static void permutations(String[] args) {
+        System.out.println(args[0] + ", " + args[1] + ", " + args[2]);
+        System.out.println(args[0] + ", " + args[2] + ", " + args[1]);
+        System.out.println(args[1] + ", " + args[0] + ", " + args[2]);
+        System.out.println(args[1] + ", " + args[2] + ", " + args[0]);
+        System.out.println(args[2] + ", " + args[0] + ", " + args[1]);
+        System.out.println(args[2] + ", " + args[1] + ", " + args[0]);
     }
 
     static void UseThree(String[] args) {
