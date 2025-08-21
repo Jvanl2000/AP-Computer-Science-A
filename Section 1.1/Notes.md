@@ -333,8 +333,8 @@ java AddArgs 123 456
 ```
 - This method takes in an array of strings, it does not care if they are numbers.
 
-## 1.1.9 — What happens when you name the **`main` class** something different that the file name
-- If you name the file something that is not the class name then you will recieve a compiler error such as:
+## 1.1.9 — What happens when you name the **`main` class** something different than the file name
+- If you name the file something that is not the **class** name then you will recieve a compiler error such as:
 ```
 MyProgram.java:1: error: class NotMyProgram is public, should be declared in a file named NotMyProgram.java
 public class NotMyProgram {
