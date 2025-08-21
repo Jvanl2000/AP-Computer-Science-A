@@ -26,6 +26,15 @@ Error: Main method not found in class MyProgram, please define the main method a
 or a JavaFX application class must extend javafx.application.Application
 ```
 
+### `MyProgram`
+- Omitting `MyProgram` from the **class** definition will result in a compiler exception such as:
+```
+MyProgram.java:1: error: <identifier> expected
+public class {
+            ^
+1 error  
+```
+
 ### `static`
 - If the **`main` method** is not declared `static`, you will receive a runtime error such as: 
 ```
@@ -42,6 +51,27 @@ MyProgram.java:2: error: invalid method declaration; return type required
 1 error
 ```
 
+### `main`
+- Omitting the name of the `main` method will cause a compiler error such as:
+```
+MyProgram.java:2: error: <identifier> expected
+    public static void (String[] args) {
+                      ^
+1 error
+```
+
+### `String`
+- Omitting the varable input type will cause an compiler exception such as:
+```
+MyProgram.java:2: error: illegal start of type
+    public static void main([] args) {
+                            ^
+MyProgram.java:2: error: ',', ')', or '[' expected
+    public static void main([] args) {
+                              ^
+2 errors
+```
+
 ### `args`
 - If the variable name `args` is omitted from the `main` function header, you will receive a compiler exception such as:
 ```
@@ -51,18 +81,106 @@ MyProgram.java:2: error: <identifier> expected
 1 error
 ```
 
-### `main`
-### `String`
-### `MyProgram`
 ### `System.out`
+- Omitting the `System.out` will result in a compiler exception such as:
+```
+MyProgram.java:3: error: cannot find symbol
+        println("Hello, World!");
+        ^
+  symbol:   method println(String)
+  location: class MyProgram
+1 error
+```
+
 ### `println`
-### the ;
-### the first "
-### the second "
-### the first {
-### the second {
-### the first }
-### the second }
+- Omitting the `println` from the method will result in a compiler error such as:
+```
+MyProgram.java:3: error: cannot find symbol
+        System.out("Hello, World!");
+              ^
+  symbol:   method out(String)
+  location: class System
+1 error
+```
+
+### The `;`
+- Omitting the `;` from the end of ANY line will result in a compiler error such as:
+```
+MyProgram.java:3: error: ';' expected
+        System.out.println("Hello, World!")
+                                           ^
+1 error
+```
+
+### The First or Second `"`
+- Omitting either double quote will result in a compiler error
+
+#### First `"`
+```
+MyProgram.java:3: error: ')' or ',' expected
+        System.out.println(Hello, World!");
+                                       ^
+MyProgram.java:3: error: unclosed string literal
+        System.out.println(Hello, World!");
+                                        ^
+2 errors
+```
+
+#### Second `"`
+```
+MyProgram.java:3: error: unclosed string literal
+        System.out.println("Hello, World!);
+                           ^
+1 error
+```
+
+### The First or Second `{`
+- Omitting either forward curly bracket will result in a compiler error
+
+#### First `{` (**Class**)
+```
+MyProgram.java:1: error: '{' expected
+public class MyProgram 
+                      ^
+MyProgram.java:2: error: unnamed classes are a preview feature and are disabled by default.
+    public static void main(String[] args) {
+                  ^
+  (use --enable-preview to enable unnamed classes)
+MyProgram.java:5: error: class, interface, enum, or record expected
+}
+^
+3 errors
+```
+
+#### Second `{` (**`main` method**)
+```
+MyProgram.java:2: error: ';' expected
+    public static void main(String[] args) 
+                                          ^
+MyProgram.java:5: error: class, interface, enum, or record expected
+}
+^
+2 errors
+```
+
+### The First or Second `}`
+- Omitting either backward curly bracket will result in a compiler error
+
+#### First `}` (**Class**)
+```
+MyProgram.java:4: error: reached end of file while parsing
+    }
+     ^
+1 error
+```
+
+#### Second `]` (**`main` method**)
+```
+MyProgram.java:5: error: reached end of file while parsing
+}
+ ^
+1 error
+```
 
 ## 1.1.3 — What happens when you omit the 2nd letter of modifiers/keywords from the **`main` method** or **class**
 
@@ -182,3 +300,44 @@ Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: Index 0 out
 - Inputs: `String[] args`
 - Returns: `None`
 - Description: This method prints the string `"{args[2]}, {args[1]}, and {args[0]} are learning Java!"` to the console. This method prints the names in reverse order.
+
+## 1.1.7 — Method `Permutations`
+- Method name: `Permutations`
+- Inputs: `String[] args`
+- Returns: `None`
+- Description: This method will print the first 3 value of `args` in all possible permutations.
+
+### Example
+```
+java Permutations Alice Bob Carol
+Alice, Bob, Carol
+Alice, Carol, Bob
+Bob, Alice, Carol
+Bob, Carol, Alice
+Carol, Alice, Bob
+Carol, Bob, Alice
+```
+
+## 1.1.8 — Method `AddArgs`
+- Method name: `AddArgs`
+- Inputs: `String[] args`
+- Returns: `None`
+- Description: This method will concatinate the first two strings within `args`
+
+### Example
+```
+java AddArgs Alice Bob
+AliceBob
+java AddArgs 123 456
+123456
+```
+- This method takes in an array of strings, it does not care if they are numbers.
+
+## 1.1.9 — What happens when you name the **`main` class** something different that the file name
+- If you name the file something that is not the class name then you will recieve a compiler error such as:
+```
+MyProgram.java:1: error: class NotMyProgram is public, should be declared in a file named NotMyProgram.java
+public class NotMyProgram {
+       ^
+1 error
+```
