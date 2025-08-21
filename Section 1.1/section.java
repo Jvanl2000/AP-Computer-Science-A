@@ -3,10 +3,33 @@ public class section {
         // HelloWorld();
         // UseArgument(args);
         // UseThree(args);
-        permutations(args);
+        // Permutations(args);
+        // AddArgs(args);
+        // PrintInitials();
+        PrintInitials();
     }
 
-    static void permutations(String[] args) {
+    static void PrintInitials() {
+        System.out.println("""
+         *******    *      *     *
+            *      * *     *     *
+            *     *   *    *     *
+            *     *   *    *     *
+            *    *******    *   * 
+            *     *   *     *   * 
+        *   *     *   *      * *  
+        *   *     *   *      * *  
+        *****     *   *       *   
+        """);
+    }
+
+                                      
+
+    static void AddArgs(String[] args) {
+        System.out.println(args[0] + args[1]);
+    }
+
+    static void Permutations(String[] args) {
         System.out.println(args[0] + ", " + args[1] + ", " + args[2]);
         System.out.println(args[0] + ", " + args[2] + ", " + args[1]);
         System.out.println(args[1] + ", " + args[0] + ", " + args[2]);
