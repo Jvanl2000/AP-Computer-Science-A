@@ -6,7 +6,14 @@ public class section {
         // Permutations(args);
         // AddArgs(args);
         // PrintInitials();
-        PrintInitials();
+        // PrintInitials();
+        Print();
+    }
+
+    static void Print() {
+        System.out.print("Hello ");
+        System.out.print("World");
+        System.out.print("!");
     }
 
     static void PrintInitials() {
