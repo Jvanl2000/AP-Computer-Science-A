@@ -341,3 +341,60 @@ public class NotMyProgram {
        ^
 1 error
 ```
+
+## 1.1.10 — Method `PrintInitials`
+- Method name: `PrintInitials`
+- Inputs: `None`
+- Returns: `None`
+- Description: This method will print my initials to the console.
+
+## 1.1.11 — What does `System.out.print` do
+### Example Code
+```java
+public class MyProgram {
+    public static void main(String[] args) {
+        System.out.print("Hello ");
+        System.out.print("World");
+        System.out.print("!");
+    }
+}
+```
+### Results
+```
+java Print
+Hello World!
+```
+- The difference between `print` and `println` is that `println` appends a new line character (`\n`) to the end of every line. In essence it moves to a new line every time.
+
+### Method `Print`
+- Method name: `Print`
+- Inputs: `None`
+- Returns: `None`
+- Description: This method will print `Hello World!` to the console using three seperate `System.out.print` statments.
+
+
+## 1.1.12 — What is wrong
+- What is wrong with this code to get this error during runtime?
+### Code
+```java
+public class MyProgram {
+   public static void main() {
+      System.out.println("Doesn't execute");   
+   }
+}
+```
+### Error
+```
+java.lang.NoSuchMethodError: main
+```
+### Answer
+- The reason that there is a runtime exception and not a compiler one is because this error is not syntatical. The error is caused y the fact the the `main` method header is not correct.
+### Corrected Code
+```java
+public class MyProgram {
+   public static void main(String[] args) {
+      System.out.println("Doesn't execute");   
+   }
+}
+```
+- The main method is required to have the `String[] args` within its header.
