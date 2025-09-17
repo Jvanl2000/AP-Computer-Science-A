@@ -15,7 +15,6 @@ public class section {
         int d = Integer.parseInt(args[1]);
         int y = Integer.parseInt(args[2]);
 
-
         int y0 = y - (14 - m) / 12;
         int x = y0 + y0 / 4 - y0 / 100 + y0 / 400;
         int m0 = m + 12 * ((14 - m) / 12) - 2;
@@ -29,13 +28,8 @@ public class section {
         double y = Double.parseDouble(args[1]);
         double z = Double.parseDouble(args[2]);
 
-        if ((x < y) && (y < z)) {
-            System.out.println(true);
-        } if ((x > y) && (y < z)) {
-            System.out.println(true);
-        } else {
-            System.out.println(false);
-        }
+        boolean result = (((x < y) && (y < z)) || ((x > y) && (y < z)));
+        System.out.println(result);
     }
 
     private static void betweenDate(String[] args) {
@@ -43,17 +37,7 @@ public class section {
         int d = Integer.parseInt(args[1]);
 
         boolean month = -3 <= (m - 6) && 0 >= (m - 6);
-        boolean day = false;
-
-        if ((3 < m) && (m < 6)) {
-            day = true;
-        } else {
-            if ((m == 3) && (d >= 20)) {
-                day = true;
-            } if ((m == 6) && (d <= 20)) {
-                day = true;
-            }
-        }
+        boolean day = ((3 < m) && (m < 6)) || ((m == 3) && (d >= 20)) || ((m == 6) && (d <= 20));
 
         System.out.println(month && day);
     }
@@ -88,10 +72,9 @@ public class section {
         int b = Integer.parseInt(args[1]);
         int c = Integer.parseInt(args[2]);
 
-        if ((a < b + c) && (b < a + c) && (c < a + b))
-            System.out.println(true);
-        else
-            System.out.println(false);
+        boolean result = ((a < b + c) && (b < a + c) && (c < a + b));
+       
+        System.out.println(result);
     }
 
     private static void isDiv(String[] args) {
@@ -99,17 +82,12 @@ public class section {
         int a = Integer.parseInt(args[0]);
         int b = Integer.parseInt(args[1]);
 
-        if ((a % b == 0) || (b % a == 0))
-            System.out.println(true);
-        else
-            System.out.println(false);
+        boolean result = ((a % b == 0) || (b % a == 0));
+
+        System.out.println(result);
     }
 
     private static double cosAndSin(String[] args) {
-        if (args.length != 1) {
-            return -1;
-        }
-
         double x = Double.parseDouble(args[0]);
 
         return (Math.sin(x) * Math.sin(x)) + (Math.cos(x) * Math.cos(x));
