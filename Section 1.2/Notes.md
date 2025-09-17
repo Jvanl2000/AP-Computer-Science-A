@@ -14,7 +14,7 @@ java
 - Method name: `cosAndSin`
 - Inputs: `double x`
 - Returns: `double`
-- Description: This method returns the value of cos(x)^2 + sin(x)^2. This value should always be equivalent to `1`, but due to inacuracys in floating-point numbers it will be slightly off.
+- Description: This method returns the value of cos(x)^2 + sin(x)^2. This value should always be equivalent to `1`, but due to inaccuracies in floating-point numbers, it will be slightly off.
 
 ## 1.2.3 — Evaluate this logical expression
 ### Question
@@ -35,12 +35,12 @@ java
 ### Answer
 - This equation would translate to
 - "If `a` isn't less than `b` and `a` isn't greater than `b`"
-- If a value isn't greater or less than another than they have to be the same
+- If a value isn't greater than or less than another, then they have to be the same
 - `a = b`
 
 ## 1.2.5 — Provide the truth table for the exclusive or operator
 ### Exclusive or operator definition
-- For boolean operands is defined to be `true` if they are different, `false` if they are the same.
+- Boolean operands are defined to be `true` if they are different, `false` if they are the same.
 ## Truth Table
 | A | B | EXOR |
 |---|---|----------|
@@ -70,25 +70,25 @@ System.out.println(2 + "bc");
 System.out.println(2 + 3 + "bc");
 5bc
 ```
-- Java sees the two integers before the string so it simplifys the mathmatical expression before converting it to a string
+- Java sees the two integers before the string, so it simplifies the mathematical expression before converting it to a string
 ### C
 ```
 System.out.println((2+3) + "bc");
 5bc
 ```
-- Same reason as previous
+- Same reason as the previous
 ### D
 ```
 System.out.println("bc" + (2+3));
 bc5
 ```
-- Java sees the parenthesis before the string so it compleats the math before converting to a string
+- Java sees the parentheses before the string, so it completes the math before converting to a string
 ### E
 ```
 System.out.println("bc" + 2 + 3);
 bc23
 ```
-- Java sees the string first so it converts the rest into strings
+- Java sees the string first, so it converts the rest into strings
 
 ## 1.2.8 — Square Root of a Number
 ### Program 1.2.3
@@ -124,7 +124,7 @@ System.out.println('b' + 'c');
 197
 ```
 - `b` and `c` are char literals
-- In Java char is a 16 bit unsigned integer type (it stores Unicode)
+- In Java, `char` is a 16-bit unsigned integer type (it stores Unicode)
 - `b` is the integer value 98
 - `c` is the integer value 99
 - `b` + `c` → 98 + 99 = 197.
@@ -136,9 +136,9 @@ e
 ```
 - This works the same as the last problem
 - `a` is converted to an integer and added 4
-- After the mathmatical operations are compleated it converts its integer back into its unicode form (`e`)
+- After the mathematical operations are completed, it converts its integer back into its Unicode form (`e`)
 
-## 1.2.11 — Mathmatical operations on a `double`
+## 1.2.11 — Mathematical operations on a `double`
 ### Question
 - Suppose that a variable a is declared as double `a = 3.14159`. What does
 each of the following print?
@@ -147,33 +147,33 @@ each of the following print?
 System.out.println(a);
 3.14159
 ```
-- Simply prints the variable `a` to the console
+- Prints the variable `a` to the console
 ### B
 ```
 System.out.println(a+1);
 4.14159
 ```
-- Simply prints the value of `a + 1` to the console
+- Prints the value of `a + 1` to the console
 ### C
 ```
 System.out.println(8/(int) a);
 2
 ```
-- Since both numbers are integers java does integer division
+- Since both numbers are integers, Java does integer division
 ### D
 ```
 System.out.println(8/a);
 2.5464812403910124
 ```
-- Java does regualar double division
+- Java does regular double division
 ### E
 ```
 System.out.println((int) (8/a));
 2
 ```
-- Does regular double division then converts to an integer removoing all decimals without rounding
+- Does regular double division, then converts to an integer, removing all decimals without rounding
 
-## 1.2.12 — Omiting `Math.`
+## 1.2.12 — Omitting `Math.`
 ### Program
 java
 ```
@@ -189,9 +189,9 @@ public class Quadratic {
 }
 ```
 ### Question
-- What happens if you omit `Math.` from the beggening of `Math.sqrt` in Program 1.2.3?
+- What happens if you omit `Math.` from the beginning of `Math.sqrt` in Program 1.2.3?
 ### Result
-- You will recieve a compilation such as
+- You will receive a compilation such as
 ```
 section.java:19: error: cannot find symbol
         double d = sqrt(discriminant);
@@ -208,20 +208,20 @@ error: compilation failed
 - `(Math.sqrt(2) * Math.sqrt(2) == 2)`
 ### Result
 - `false`
-- The answer is false because when calculating square roots in java it is only a double aproxomation not an exact value
-- When it does the math the answer is `2.0000000000000004` which is NOT equal to 2
+- The answer is false because when calculating square roots in Java, it is only a double approximation, not an exact value
+- When it does the math, the answer is `2.0000000000000004` which is NOT equal to 2
 
 ## 1.2.14 — Method `isDiv`
 - Method name: `isDiv`
 - Inputs: `String[] args`
 - Returns: `None`
-- Description: This method prints true or false if either of the first two integer values provided in `args` are divisible evenly by eachother
+- Description: This method prints true or false if either of the first two integer values provided in `args` is evenly divisible by the other.
 
 ## 1.2.15 — Method `isPossibleTriangle`
 - Method name: `isPossibleTriangle`
 - Inputs: `String[] args`
 - Returns: `None`
-- Description: Prints `false` if any one of the other two variables are greater than or equal to the sum of the other two and true otherwise
+- Description: Prints `false` if any one of the other two variables is greater than or equal to the sum of the other two, and true otherwise
 
 ## 1.2.16 — Order of operations
 ### Question
@@ -230,8 +230,8 @@ and correct the code.
 - `double force = G * mass1 * mass2 / r * r;`
 ### Answer
 - `double force = G * mass1 * mass2 / (r * r);`
-- The problem was order of operations
-- With the original setup it did `mass2 / r` then that value `/ r`
+- The problem was the order of operations
+- With the original setup, it did `mass2 / r` then that value `/ r`
 
 ## 1.2.17 — Changing Variables
 ### Integer (addition)
@@ -296,11 +296,10 @@ a = a * a;
 - Method name: `inOrder`
 - Inputs: `String[] args`
 - Returns: `None`
-- Description: Prints if the given points (`x,y,z`) are in acending or decending order
+- Description: Prints if the given points (`x,y,z`) are in ascending or descending order
 
 ## 1.2.29 — Method `dayOfTheWeek`
 - Method name: `dayOfTheWeek`
 - Inputs: `String[] args`
 - Returns: `None`
 - Description: Prints the day of the week (in int form) given a month, day, and year
-
