@@ -4,8 +4,7 @@
 
 ### Question
 - Suppose that a and b are int variables. What does the following sequence of statements do?
-java
-- ```int t = a; b = t; a = b;```
+- `int t = a; b = t; a = b;`
 
 ### Answer
 - This script would set all of the variables (```a,b,t```) to the value of the variable ```a```.
@@ -35,7 +34,7 @@ java
 ### Answer
 - This equation would translate to
 - "If `a` isn't less than `b` and `a` isn't greater than `b`"
-- If a value isn't greater than or less than another, then they have to be the same
+- If a value isn't greater than nor less than another, then they have to be the same
 - `a = b`
 
 ## 1.2.5 — Provide the truth table for the exclusive or operator
@@ -53,10 +52,9 @@ java
 ### Question
 - Why does `10/3` give 3 and not 3.333333333?
 ### Answer
-- Since both 10 and 3 are integer literals, Java sees no need for type conversion and uses integer division. You should write `10.0/3.0` if you mean the numbers
+- Since both 10 and 3 are integer literals, Java sees no need for type conversion and uses integer division. You should write `10.0/3.0` if you want a `double` return value
 
-- To be double literals. If you write `10/3.0` or `10.0/3`, Java does implicit conversion
-to get the same result.
+- To be double literals. If you write `10/3.0` or `10.0/3`, Java does implicit conversion to get the same result.
 
 ## 1.2.7 — Addition with Strings and Numbers
 ### A
@@ -92,8 +90,7 @@ bc23
 
 ## 1.2.8 — Square Root of a Number
 ### Program 1.2.3
-java
-```
+```java
 public class Quadratic {
     public static void main(String[] args) {
         double b = Double.parseDouble(args[0]);
@@ -175,8 +172,7 @@ System.out.println((int) (8/a));
 
 ## 1.2.12 — Omitting `Math.`
 ### Program
-java
-```
+```java
 public class Quadratic {
     public static void main(String[] args) {
         double b = Double.parseDouble(args[0]);
