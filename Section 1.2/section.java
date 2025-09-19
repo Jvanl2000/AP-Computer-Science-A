@@ -1,13 +1,93 @@
 public class section {
     public static void main(String[] args) {
-        // System.out.println(cosAndSin(args));
+        // cosAndSin(args);
         // isDiv(args);
         // euclideanDistance(args);
         // randomBetween(args);
         // rollDice();
         // betweenDate(args);
         // inOrder(args);
+        // polarCoordinates(new String[] {"5.6", "20.1"});
         // dayOfTheWeek(new String[] {"1", "1", "0"});
+        // greatCircle(new String[] {"48.87", "2.33", "37.8", "122.4"});
+        // threeSort(new String[] {"64", "87", "-8"});
+        // dragonCurve();
+        // greaterValue(new String[] {"8", "-52"});
+        // lesserValue(new String[] {"8", "-52"});
+        // tripleGreaterValue(new String[] {"-8", "1", "6"});
+    }
+
+    private static void tripleGreaterValue(String[] args) {
+        int p = Integer.parseInt(args[0]);
+        int q = Integer.parseInt(args[1]);
+        int r = Integer.parseInt(args[2]);
+
+        int greaterNumber = (int) ((((p + q + Math.abs(p - q)) / 2.0) + r + Math.abs(((p + q + Math.abs(p - q)) / 2.0) - r)) / 2.0);
+
+        System.out.println(greaterNumber);
+    }
+
+    private static void lesserValue(String[] args) {
+        int p = Integer.parseInt(args[0]);
+        int q = Integer.parseInt(args[1]);
+
+        int lesserNumber = (int) ((2 * ((p + q) / 2.0)) - (((p + q) / 2.0) + ((Math.abs(p - q)) / 2.0)));
+    
+        System.out.println(lesserNumber);
+    }
+
+    private static void greaterValue(String[] args) {
+        int p = Integer.parseInt(args[0]);
+        int q = Integer.parseInt(args[1]);
+
+        int greaterNumber = (int) (((p + q) / 2.0) + ((Math.abs(p - q)) / 2.0));
+
+        System.out.println(greaterNumber);
+    }
+
+    private static void dragonCurve() {
+        System.out.println("F");
+        System.out.println("FLF");
+        System.out.println("FLFLFRF");
+        System.out.println("FLFLFRFLFLFRFRF");
+        System.out.println("FLFLFRFLFLFRFRFLFLFLFRFRFLFRFRF");
+        System.out.println("FLFLFRFLFLFRFRFLFLFLFRFRFLFRFRFLFLFLFRFLFLFRFRFRFLFLFRFRFLFRFRF");
+    }
+
+    private static void threeSort(String[] args) {
+        int a = Integer.parseInt(args[0]);
+        int b = Integer.parseInt(args[1]);
+        int c = Integer.parseInt(args[2]);
+
+        int max = Math.max(a, Math.max(b, c));
+        int mid = Math.max(a, Math.min(b, c));
+        int min = Math.min(a, Math.min(b, c));
+
+        System.out.println(max + ", " + mid + ", " + min);
+    }
+
+    private static void greatCircle(String[] args) {
+        double x1 = Math.toRadians(Double.parseDouble(args[0]));
+        double y1 = Math.toRadians(Double.parseDouble(args[1]));
+        double x2 = Math.toRadians(Double.parseDouble(args[2]));
+        double y2 = Math.toRadians(Double.parseDouble(args[3]));
+
+        double sinProduct = Math.sin(x1) * Math.sin(x2);
+        double cosProduct = Math.cos(x1) * Math.cos(x2) * Math.cos(y1 - y2); 
+
+        double distance = 60 * Math.toDegrees(Math.acos(sinProduct + cosProduct));
+
+        System.out.println(distance);
+    }
+
+    private static void polarCoordinates(String[] args) {
+        double x = Double.parseDouble(args[0]);
+        double y = Double.parseDouble(args[1]);
+
+        double r = Math.sqrt(x * x + y * y);
+        double theta = Math.atan2(y, x);
+
+        System.out.println(r + ", " + theta);
     }
 
     private static void dayOfTheWeek(String[] args) {
@@ -87,9 +167,9 @@ public class section {
         System.out.println(result);
     }
 
-    private static double cosAndSin(String[] args) {
+    private static void cosAndSin(String[] args) {
         double x = Double.parseDouble(args[0]);
 
-        return (Math.sin(x) * Math.sin(x)) + (Math.cos(x) * Math.cos(x));
+        System.out.println((Math.sin(x) * Math.sin(x)) + (Math.cos(x) * Math.cos(x)));
     }
 }

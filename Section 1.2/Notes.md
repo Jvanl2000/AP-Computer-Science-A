@@ -1,4 +1,4 @@
-# 1.2 — name
+# 1.2 — Data Types
 
 ## 1.2.1 — Variable Logic
 
@@ -288,6 +288,12 @@ a = a * a;
 - Returns: `None`
 - Description: Prints if the given date is within the range 3/20 to 6/20
 
+## 1.2.26 — Method `polarCoordinates`
+- Method name: `polarCoordinates`
+- Inputs: `String[] args`
+- Returns: `None`
+- Description: Prints the coverted Cartesian to polar coordinates
+
 ## 1.2.28 — Method `inOrder`
 - Method name: `inOrder`
 - Inputs: `String[] args`
@@ -299,3 +305,177 @@ a = a * a;
 - Inputs: `String[] args`
 - Returns: `None`
 - Description: Prints the day of the week (in int form) given a month, day, and year
+
+## 1.2.33 — Method `greatCircle`
+- Method name: `greatCircle`
+- Inputs: `String[] args`
+- Returns: `None`
+- Description: Prints the distance between the lat and long
+
+## 1.2.34 — Method `threeSort`
+- Method name: `threeSort`
+- Inputs: `String[] args`
+- Returns: `None`
+- Description: Prints three integer inputed in the order from greatest to least
+
+## S1 — Printing a `\`
+### Example
+```
+jshell> System.out.println("Slash: \");
+|  Error:
+|  unclosed string literal
+|  System.out.println("Slash: \");
+|
+```
+### Reasoning
+- The `\` is normaly followed by a specific character to form an escape sequence
+- Since this is apart of the `String` it is confusing Java
+- To do this proporly add another `\`
+```
+jshell> System.out.println("Slash: \\");
+Slash: \
+```
+
+## S2 — Using ``` ` ``` as a `char`
+### Example
+- What happens if we have the line of code below in a program?
+```
+jshell> System.out.println("Single quote: " + ''');
+|  Error:
+|  empty character literal
+|  System.out.println("Single quote: " + ''');
+|
+```
+### Reasoning
+- Because of the second ``` ` ``` Java thinks you have ended the `char`
+- If you want to do this add a `\` in front of the ``` ` ```
+
+## S3 — Java Math
+```
+jshell> 3 / 2
+$1 ==> 1
+
+jshell> 3.0 / 2.0
+$2 ==> 1.5
+
+jshell> 3.0 / 2
+$3 ==> 1.5
+
+jshell> 2 + 3 + "abc"
+$4 ==> "5abc"
+
+jshell> (2 + 3) + "abc"
+$5 ==> "5abc"
+
+jshell> 2 + "abc" + 3
+$6 ==> "2abc3"
+
+jshell> "abc" + 2 + 3
+$7 ==> "abc23"
+
+jshell> "abc" + (2 + 3)
+$8 ==> "abc5"
+
+jshell> 1 / 0
+|  Exception java.lang.ArithmeticException: / by zero
+|        at (#9:1)
+
+jshell> 1.0 / 0
+$10 ==> Infinity
+
+jshell> 0 / 0
+|  Exception java.lang.ArithmeticException: / by zero
+|        at (#11:1)
+
+jshell> 0.0 / 0
+$12 ==> NaN
+```
+
+## S4 — What is wrong with the code fragment below?
+### Fragment
+```
+double C = (F - 32) * (5 / 9);
+```
+### Answer
+- This function will not work because `5 / 9` is integer division, not double division
+
+## S5 — Mysterious Casting
+### Example
+```
+jshell> double x = (double) (3/5);
+   ...> System.out.println(x);
+x ==> 0.0
+0.0
+```
+### Reasoning
+- Even though the division is being casted to a double, this is after the integer division had already accoured
+
+## S6 — Integer Memory Sizes
+- long (64 bits): −2^63 to 2^63 - 1
+- int (32 bits): -2^31 to 2^31 - 1
+- short (16 bits): -2^15 to 2^15 - 1
+- byte (8 bits): -2^7 to 2^7 - 1
+
+## S7 — The `final` Keyword
+### Example
+```
+jshell> final int myFinalNumber = 10;
+myFinalNumber ==> 10
+
+jshell> myFinalNumber = 20;
+|  Error:
+|  cannot assign a value to final variable myFinalNumber
+|  myFinalNumber = 20;
+|  ^----------------^
+```
+### Reasoning
+- A `final` variable has a final value, it can't be changed no matter what
+
+## S8 — Compiles but doesn't run?
+### Code
+```java
+public class Hello {
+   public static void main() {
+      System.out.println("Doesn't execute");   
+   }
+}
+```
+### Question
+- Why does this code compile but not execute?
+### Reasoning
+- This code is syntaticly correct but lacks the correct `main` method declaration
+- Without the right delaration the JVM doesn't know where to start execution
+
+## S9 — Method `greaterValue`
+- Method name: `greaterValue`
+- Inputs: `String[] args`
+- Returns: `None`
+- Description: Prints the greatest integer of two given via Algebra
+
+## S10 — Method `lesserValue`
+- Method name: `lesserValue`
+- Inputs: `String[] args`
+- Returns: `None`
+- Description: Prints the lesser integer of two given via Algebra
+
+## S11 — Method `tripleGreaterValue`
+- Method name: `tripleGreaterValue`
+- Inputs: `String[] args`
+- Returns: `None`
+- Description: Prints the greater integer of the three given via Algebra
+
+## S12 — Max Integer Values
+### JSHELL
+```
+jshell> -2147483648
+$1 ==> -2147483648
+
+jshell> -(2147483648)
+|  Error:
+|  integer number too large
+|  -(2147483648)
+|
+```
+### Answer
+- The max value for an integer is 2^31 - 1 (Its one less because of 0)
+- When you try setting the number to 2^31, that is over the max allocated memory for that data type
