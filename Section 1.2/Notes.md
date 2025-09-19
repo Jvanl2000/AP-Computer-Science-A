@@ -292,7 +292,7 @@ a = a * a;
 - Method name: `polarCoordinates`
 - Inputs: `String[] args`
 - Returns: `None`
-- Description: Prints the coverted Cartesian to polar coordinates
+- Description: Prints the converted Cartesian to polar coordinates
 
 ## 1.2.28 — Method `inOrder`
 - Method name: `inOrder`
@@ -316,7 +316,7 @@ a = a * a;
 - Method name: `threeSort`
 - Inputs: `String[] args`
 - Returns: `None`
-- Description: Prints three integer inputed in the order from greatest to least
+- Description: Prints three integer inputs in the order from greatest to least
 
 ## S1 — Printing a `\`
 ### Example
@@ -328,9 +328,9 @@ jshell> System.out.println("Slash: \");
 |
 ```
 ### Reasoning
-- The `\` is normaly followed by a specific character to form an escape sequence
-- Since this is apart of the `String` it is confusing Java
-- To do this proporly add another `\`
+- The `\` is normally followed by a specific character to form an escape sequence
+- Since this is a part of the `String`, it is confusing Java
+- To do this properly, add another `\`
 ```
 jshell> System.out.println("Slash: \\");
 Slash: \
@@ -348,7 +348,7 @@ jshell> System.out.println("Single quote: " + ''');
 ```
 ### Reasoning
 - Because of the second ``` ` ``` Java thinks you have ended the `char`
-- If you want to do this add a `\` in front of the ``` ` ```
+- If you want to do this, add a `\` in front of the ``` ` ```
 
 ## S3 — Java Math
 ```
@@ -408,7 +408,7 @@ x ==> 0.0
 0.0
 ```
 ### Reasoning
-- Even though the division is being casted to a double, this is after the integer division had already accoured
+- Even though the division is being cast to a double, this is after the integer division had already occurred
 
 ## S6 — Integer Memory Sizes
 - long (64 bits): −2^63 to 2^63 - 1
@@ -429,7 +429,7 @@ jshell> myFinalNumber = 20;
 |  ^----------------^
 ```
 ### Reasoning
-- A `final` variable has a final value, it can't be changed no matter what
+- A `final` variable has a final value; it can't be changed, no matter what
 
 ## S8 — Compiles but doesn't run?
 ### Code
@@ -443,8 +443,8 @@ public class Hello {
 ### Question
 - Why does this code compile but not execute?
 ### Reasoning
-- This code is syntaticly correct but lacks the correct `main` method declaration
-- Without the right delaration the JVM doesn't know where to start execution
+- This code is syntactically correct but lacks the correct `main` method declaration
+- Without the right declaration the JVM doesn't know where to start execution
 
 ## S9 — Method `greaterValue`
 - Method name: `greaterValue`
@@ -477,5 +477,5 @@ jshell> -(2147483648)
 |
 ```
 ### Answer
-- The max value for an integer is 2^31 - 1 (Its one less because of 0)
+- The max value for an integer is 2^31 - 1 (It's one less because of 0)
 - When you try setting the number to 2^31, that is over the max allocated memory for that data type
