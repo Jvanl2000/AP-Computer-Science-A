@@ -4,7 +4,7 @@
 - Method name: `threeEqual`
 - Inputs: `int a, int b, int c`
 - Returns: `None`
-- Description: Prints `Equal` to the console if `a == b == c` is true, otherwize it returns `Not Equal`.
+- Description: Prints `Equal` to the console if `a == b == c` is true, otherwise it returns `Not Equal`.
 
 ## 1.3.3 — Wrong Conditionals
 - What is wrong (if anything) with the provided conditional statements
@@ -15,15 +15,15 @@
 
 ### B
 - `if a > b { c = 0; }`
-- There is no parenthensis around the boolean statment
+- There is no parentheses around the boolean statement
 
 ### C
 - `if (a > b) c = 0;`
-- This is a valid if statment
+- This is a valid if statement
 
 ### D
 - `if (a > b) c = 0 else b = 0;`
-- There is a missing semicollon after `c = 0`
+- There is a missing semicolon after `c = 0`
 
 ## 1.3.4 — Between 0 and 1
 ### Question
@@ -143,7 +143,7 @@ for (int i = 0; i < 999; i++);
 { System.out.println("Hello"); }
 ```
 ### Result
-- This code will print one line because the semicollon will terminate the for loop without there being a body for it to loop through.
+- This code will print one line because the semicolon will terminate the for loop without there being a body for it to loop through.
 
 ## 1.3.18 — Estimating PI
 ### Question
@@ -155,7 +155,7 @@ for (int i = 0; i < 999; i++);
 - d. for (int i = 1; i <= n; i++) sum += 1 / (1.0*i*i);
 
 ### Correct Answer
-- The correct answer is `c` because it does double divsion and order of operations correctly
+- The correct answer is `c` because it does double division and order of operations correctly
 
 ## 1.3.21 — Method `baseToBase`
 - Method name: `baseToBase`
@@ -199,7 +199,7 @@ for (int i = 0; i < 999; i++);
 - Method name: `letsMakeADeal`
 - Inputs: `int n`
 - Returns: `None`
-- Description: Simulates which stratagy would be better in the game "Let's Make a Deal", changing doors, or staying with your original choice.
+- Description: Simulates which strategy would be better in the game "Let's Make a Deal", changing doors, or staying with your original choice.
 
 ## S1 — Incorrect While Loop
 ### Question
@@ -211,7 +211,7 @@ while (done = false) {
 }
 ```
 ### Answer
-- This loop is incorrect because whithin the `while` prenhensis, it has a single `=`, which is the assignment operator, not `==` which is the comparison operator.
+- This loop is incorrect because within the `while` prenhensis, it has a single `=`, which is the assignment operator, not `==`, which is the comparison operator.
 
 ## S2 — Incorrect For Loop
 ### Question
@@ -234,33 +234,33 @@ if (x > 0);
     System.out.println("positive");
 ```
 ### Answer
-- This code prints "positive" every time because the semicolon after the if statment end the statement there
+- This code prints "positive" every time because the semicolon after the if statement ends the statement there
 
 ## S4 — Method `childSimulation`
 - Method name: `childSimulation`
 - Inputs: `int n`
 - Returns: `None`
-- Description: Prints out the average amount of kids you need to have to have both a boy and girl
+- Description: Prints out the average number of kids you need to have to have both a boy and girl
 
 ## S5 — Method `threeDice`
 - Method name: `threeDice`
 - Inputs: `int n`
 - Returns: `None`
-- Description: Prints out the average of the 3 pre-difined dice sets
+- Description: Prints out the average of the 3 predefined dice sets
 
 ## S6 — Method `estimateRoot`
 - Method name: `estimateRoot`
 - Inputs: `int base`
 - Returns: `None`
-- Description: Prints out the priciple square root of `base`using Newtens algorythem
+- Description: Prints out the principal square root of `base`using Newton's algorithm
 
 ## S7 — Method `negEstimateRoot`
 - Method name: `negEstimateRoot`
 - Inputs: `int base`
 - Returns: `None`
-- Description: Prints out the negitive square root of `base` using Newtens algorythem
+- Description: Prints out the negative square root of `base` using Newton's algorithm
 
-## S8 — Getting Negitive Root from Root Function
+## S8 — Getting Negative Root from Root Function
 ### Question
 - Try to use the program you wrote for S6 to find the square root of a negative number. What does it do? Can you explain why?
 ### Answer
@@ -273,13 +273,13 @@ if (x > 0);
 - Method name: `estimateCubeRoot`
 - Inputs: `int base`
 - Returns: `None`
-- Description: Prints out the cube root of `base` using Newtens algorythem
+- Description: Prints out the cube root of `base` using Newton's algorithm
 
 ## S10 — Method `estimateNthRoot`
 - Method name: `estimateNthRoot`
 - Inputs: `int base, int root`
 - Returns: `None`
-- Description: Prints out the nth root of `base` using Newtens algorythem
+- Description: Prints out the nth root of `base` using Newton's algorithm
 
 ## S11 — Method `sumRandomOne`
 - Method name: `sumRandomOne`
