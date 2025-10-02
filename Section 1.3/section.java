@@ -15,7 +15,7 @@ public class section {
         // System.out.println(greatestCommonDivisor(48, 18));
         // relativelyPrime(100);
         // sumOfCubes(100000000);
-        // checksumISBM(797462578);
+        // checksumISBM(020135145);
         // pepysSimulation(10000);
         // letsMakeADeal(10000);
         // childSimulation(10000);
@@ -25,6 +25,23 @@ public class section {
         // estimateCubeRoot(-127);
         // estimateNthRoot(27, 2);
         // sumRandomOne(10000);
+        // factors(6125);
+    }
+
+    public static void factors(long n) {
+        System.out.print("The prime factorization of " + n + " is: ");
+
+        for (long factor = 2; factor*factor <= n; factor++) {
+
+            if (n % factor == 0) {
+                System.out.print(factor + " ");
+                while (n % factor == 0)
+                    n = n / factor;
+            }
+        }
+
+        if (n > 1) System.out.println(n);
+        else       System.out.println();
     }
 
     public static void sumRandomOne(int n) {
@@ -199,25 +216,25 @@ public class section {
         System.out.println("Two Dies Twelve Times: " + twoByTwelve);
     }
 
-    public static void checksumISBM(int number) {
-        int[] digits = new int[9];
-        for (int i = 0; i < 9; i++) {
-            digits[i] = (number / (int)Math.pow(10, i)) % 10;
-        }
-
-        System.out.println(Arrays.toString(digits));
+    // public static void checksumISBM(int number) {
+    //     String checksumString = "";
+    //     for (int i = 0; i < 9; i++) {
+    //         checksumString += (number / (int)Math.pow(10, 8 - i)) % 10;
+    //     }
         
-        for (int i = 0; i <= 10; i++) {
-            int sum = i + 2*digits[0] + 3*digits[1] + 4*digits[2] + 5*digits[3] + 6*digits[4] + 7*digits[5] + 8*digits[6] + 9*digits[7] + 10*digits[8];
-            if (sum % 11 == 0) {
-                if (i == 10) {
-                    System.out.println(String.valueOf(number) + "X");
-                } else {
-                    System.out.println(String.valueOf(number) + i);
-                }
-            }
-        }
-    }
+
+    //     System.out.println(checksumString);
+        // for (int i = 0; i <= 10; i++) {
+        //     int sum = i + 2*digits[0] + 3*digits[1] + 4*digits[2] + 5*digits[3] + 6*digits[4] + 7*digits[5] + 8*digits[6] + 9*digits[7] + 10*digits[8];
+        //     if (sum % 11 == 0) {
+        //         if (i == 10) {
+        //             System.out.println(String.valueOf(number) + "X");
+        //         } else {
+        //             System.out.println(String.valueOf(number) + i);
+        //         }
+        //     }
+        // }
+    // }
 
     public static void sumOfCubes(int n) {
         int orig = n;
