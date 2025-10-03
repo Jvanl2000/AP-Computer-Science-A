@@ -1,7 +1,4 @@
-
 import java.util.Arrays;
-
-
 
 public class section {
     public static void main(String[] args) {
@@ -15,11 +12,11 @@ public class section {
         // System.out.println(greatestCommonDivisor(48, 18));
         // relativelyPrime(100);
         // sumOfCubes(100000000);
-        // checksumISBM(020135145);
+        // checksumISBN(999215810);
         // pepysSimulation(10000);
         // letsMakeADeal(10000);
         // childSimulation(10000);
-        // threeDice(10000);
+        threeDice(10000);
         // estimateRoot(27);
         // negEstimateRoot(27);
         // estimateCubeRoot(-127);
@@ -109,20 +106,21 @@ public class section {
         int[] A = {2, 6, 7};
         int[] B = {1, 5, 9};
         int[] C = {3, 4, 8};
+        int[][] ALL_SETS = {A, B, C};
 
         int a = 0;
         int b = 0;
         int c = 0;
 
         for (int i = 0; i < n; i++) {
-            a += A[(int) Math.round((Math.random() * 2))];
-            b += B[(int) Math.round((Math.random() * 2))];
-            c += C[(int) Math.round((Math.random() * 2))];
+            if (A[(int) Math.round(Math.random() * 2)] > ALL_SETS[(int) Math.round(Math.random() * 2)][(int) Math.round(Math.random() * 2)]) a += 1;
+            if (B[(int) Math.round(Math.random() * 2)] > ALL_SETS[(int) Math.round(Math.random() * 2)][(int) Math.round(Math.random() * 2)]) b += 1;
+            if (C[(int) Math.round(Math.random() * 2)] > ALL_SETS[(int) Math.round(Math.random() * 2)][(int) Math.round(Math.random() * 2)]) c += 1;
         }
 
-        System.out.println("Average of " + Arrays.toString(A) + ": " + (a / (double) n));
-        System.out.println("Average of " + Arrays.toString(B) + ": " + (b / (double) n));
-        System.out.println("Average of " + Arrays.toString(C) + ": " + (c / (double) n));
+        System.out.println("Chance of winning " + Arrays.toString(A) + ": " + round((a / (double) n) * 100, 2) + "%");
+        System.out.println("Chance of winning " + Arrays.toString(B) + ": " + round((b / (double) n) * 100, 2) + "%");
+        System.out.println("Chance of winning " + Arrays.toString(C) + ": " + round((c / (double) n) * 100, 2) + "%");
     }
 
     public static void childSimulation(int n) {
@@ -216,45 +214,32 @@ public class section {
         System.out.println("Two Dies Twelve Times: " + twoByTwelve);
     }
 
-    // public static void checksumISBM(int number) {
-    //     String checksumString = "";
-    //     for (int i = 0; i < 9; i++) {
-    //         checksumString += (number / (int)Math.pow(10, 8 - i)) % 10;
-    //     }
-        
+    public static void checksumISBN(int number) {
+        double newNumber = number;
+        int[] digits = new int[9];
 
-    //     System.out.println(checksumString);
-        // for (int i = 0; i <= 10; i++) {
-        //     int sum = i + 2*digits[0] + 3*digits[1] + 4*digits[2] + 5*digits[3] + 6*digits[4] + 7*digits[5] + 8*digits[6] + 9*digits[7] + 10*digits[8];
-        //     if (sum % 11 == 0) {
-        //         if (i == 10) {
-        //             System.out.println(String.valueOf(number) + "X");
-        //         } else {
-        //             System.out.println(String.valueOf(number) + i);
-        //         }
-        //     }
-        // }
-    // }
-
-    public static void sumOfCubes(int n) {
-        int orig = n;
-        n = (int) Math.pow(n, 1.0/3);
-        for (int a = 1; a <= n; a++) {
-            for (int b = a; b <= n; b++) {
-                for (int c = a; c <= n; c++) {
-                    for (int d = c; d <= n; d++) {
-                        int sum1 = a*a*a + b*b*b;
-                        int sum2 = c*c*c + d*d*d;
-                        if (sum1 == sum2 && sum1 <= orig) {
-                            if (a != c && a != d) {
-                                System.out.println(sum1);
-                            }
-                        }
-                    }
-                }
-            }
+        for (int i = 8; i >= 0; i--) {
+            digits[i] = (int) (newNumber % 10);
+            newNumber = newNumber / 10;
         }
+
+        int sum = 0;
+        for (int i = 0; i < 9; i++) {
+            sum += digits[i] * (10 - i);
+        }
+
+        int checkDigit = (11 - (sum % 11)) % 11;
+
+        for (int i = 0; i < 9; i++) {
+            System.out.print(digits[i]);
+        }
+
+        if (checkDigit == 10)
+            System.out.println("X");
+        else
+            System.out.println(checkDigit);
     }
+
 
     public static void relativelyPrime(int n) {
         for (int x = 1; x <= n; x++) {

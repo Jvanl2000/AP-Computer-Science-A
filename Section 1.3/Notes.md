@@ -80,11 +80,11 @@ for (i = 0, j = 0; i < 10; i++) j += j++;
 - Returns: `None`
 - Description: Prints the average of n random doubles between 0 and 1.
 
-<!-- ## 1.3.12 — Method `functionGrowth`
+## 1.3.12 — Method `functionGrowth`
 - Method name: `functionGrowth`
 - Inputs: `None`
 - Returns: `None`
-- Description:  -->
+- Description: Prints a table of the values logn, n, n logen, n2, n3, and 2 n for n = 16, 32, 64, ... , 2,048. Use tabs (\t characters) to align columns.
 
 ## 1.3.13 — While Loop Logic
 ### Question
@@ -163,7 +163,11 @@ for (int i = 0; i < 999; i++);
 - Returns: `None`
 - Description: Converts from i (base 10) to base k
 
-<!-- ## 1.3.27 — -->
+## 1.3.27 — Method `factors`
+- Method name: `factors`
+- Inputs: `long n`
+- Returns: `None`
+- Description: Prints out the all of the non-same prime factors of `n`
 
 ## 1.3.30 — Method `greatestCommonDivisor`
 - Method name: `greatestCommonDivisor`
@@ -183,11 +187,11 @@ for (int i = 0; i < 999; i++);
 - Returns: `None`
 - Description: prints all integers less than or equal to n that can be expressed as the sum of two cubes in two different ways. In other words, find distinct positive integers a, b, c, and d such that a^3 + b^3 = c^3 + d^3.
 
-<!-- ## 1.3.35 — Method `checksumISBM`
+## 1.3.35 — Method `checksumISBM`
 - Method name: `checksumISBM`
 - Inputs: `int number`
 - Returns: `None`
-- Description: Computes the checksum, and prints the ISBN number. -->
+- Description: Computes the checksum of a 9 digit integer, and prints the ISBN number.
 
 ## 1.3.41 — Method `pepysSimulation`
 - Method name: `pepysSimulation`
@@ -246,7 +250,7 @@ if (x > 0);
 - Method name: `threeDice`
 - Inputs: `int n`
 - Returns: `None`
-- Description: Prints out the average of the 3 predefined dice sets
+- Description: Prints out the chance of winning with the 3 predefined dice sets
 
 ## S6 — Method `estimateRoot`
 - Method name: `estimateRoot`
