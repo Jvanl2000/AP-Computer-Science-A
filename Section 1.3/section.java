@@ -8,21 +8,42 @@ public class section {
         // oneTwoByFive();
         // averageRandom(1000);
         // functionGrowth();
-        // baseToBase(42, 16);
+        // baseToBase(981968, 14);
         // System.out.println(greatestCommonDivisor(48, 18));
         // relativelyPrime(100);
-        // sumOfCubes(100000000);
-        // checksumISBN(999215810);
+        // sumOfCubes(35000);
+        // checksumISBN(217923784);
         // pepysSimulation(10000);
         // letsMakeADeal(10000);
         // childSimulation(10000);
-        threeDice(10000);
+        // threeDice(10000);
         // estimateRoot(27);
         // negEstimateRoot(27);
         // estimateCubeRoot(-127);
-        // estimateNthRoot(27, 2);
+        // estimateNthRoot(777, 7);
         // sumRandomOne(10000);
         // factors(6125);
+    }
+
+    public static void sumOfCubes(int n) {
+        int orig = n;
+        n = (int) Math.pow(n, 1.0/3);
+        for (int a = 1; a <= n; a++) {
+            for (int b = a; b <= n; b++) {
+                for (int c = a; c <= n; c++) {
+                    for (int d = c; d <= n; d++) {
+                        int sum1 = a*a*a + b*b*b;
+                        int sum2 = c*c*c + d*d*d;
+                        if (sum1 == sum2 && sum1 <= orig) {
+                            if (a != c && a != d) {
+                                System.out.print(sum1 + " = ");
+                                System.out.println(a + " " + b + " " + c + " " + d);
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
     public static void factors(long n) {
@@ -57,9 +78,11 @@ public class section {
     public static void estimateNthRoot(int base, int root) {
         double currGuess = (double) base / root;
         double newGuess = ((root - 1) * currGuess + (double) base / Math.pow(currGuess, root - 1)) / root;
+        int count = 0;
         while (Math.abs(currGuess - newGuess) > 0.0000001) {
             currGuess = newGuess;
             newGuess = ((root - 1) * currGuess + (double) base / Math.pow(currGuess, root - 1)) / root; 
+            count++;
         }
 
         System.out.println(round(currGuess, 4));
@@ -67,6 +90,8 @@ public class section {
         if (root % 2 == 0 && base > 0) {
             System.out.println(round(-newGuess, 4));
         }
+
+        System.out.println("Looped " + count + " times");
     }
 
     public static void estimateCubeRoot(int root) {
