@@ -10,6 +10,31 @@ public class section {
         // copyArray(new int[][] {{1, 2, 3}, {4, 5}, {6, 7, 8, 9}});
         // transposition(new int[][] {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}});
         // advancedTransposition(new int[][] {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}});
+        lockerRoom();
+    }
+
+    public static void lockerRoom() {
+        boolean[] lockers = new boolean[100];
+        for (int i = 0; i < lockers.length; i++) {lockers[i] = true;}
+        for (int i = 0; i < lockers.length; i++) {
+            if ((i + 1) % 2 == 0)
+                lockers[i] = !lockers[i];
+        }
+
+        for (int i = 3; i <= 100; i++) {
+            for (int j = 0; j < lockers.length; j++) {
+                if ((j + 1) % i == 0) {
+                    lockers[j] = !lockers[j];
+                }
+            }
+        }
+
+        int total = 0;
+        System.out.print("Open Lockers: ");
+        for (int i = 0; i < lockers.length; i++) {
+            if (lockers[i]) {System.out.print(i + 1 + " ");}
+        }
+        System.out.println();
     }
 
     public static void advancedTransposition(int[][] arr) {
