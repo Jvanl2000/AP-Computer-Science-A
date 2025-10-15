@@ -7,7 +7,7 @@ int[] a = new int[1000];
 System.out.println(a[1000]);
 ```
 ### Result
-- This code will throw a runtime `ArrayIndexOutOfBoundsException` because the indecies of an array start a `0` not 1
+- This code will throw a runtime `ArrayIndexOutOfBoundsException` because the indices of an array start at `0`, not 1
 - So the starting index is `0` and the final index is `999`
 - Index `1000` does not exist
 
@@ -19,23 +19,23 @@ int n = 1000;
 int[] a = new int[n*n*n*n];
 ```
 ### Result
-- There is two main problems with this code first being the `NegativeArraySizeException`
+- There are two main problems with this code, the first being the `NegativeArraySizeException`
 - This exception is caused because of the integer overflow
-- The value `n^4` is to large for an integer, this causes it to wraparound to negitive numbers
-- The second issue with this code, ignoring the negitive value, is that all array lengths are stored as integer, which means the longest array you can have is `Integer.MAX_VALUE`
-- PS. Sometimes JVM can have other restrictions on length depending on version and use case
+- The value `n^4` is too large for an integer; this causes it to wrap around to negative numbers
+- The second issue with this code, ignoring the negative value, is that all array lengths are stored as integers, which means the longest array you can have is `Integer.MAX_VALUE`
+- PS. Sometimes JVM can have other restrictions on length depending on the version and use case, as well as memory allocation limits
 
 ## 1.4.3 — Method `vectorEuclideanDistance`
 - Method name: `vectorEuclideanDistance`
 - Inputs: `int[] vectorOne, int[] vectorTwo`
 - Returns: `None`
-- Description: Prints the Euclidean distance between the two given vector represented as 1-D arrays
+- Description: Prints the Euclidean distance between the two given vectors represented as 1-D arrays
 
 ## 1.4.4 — Method `reverseArray`
 - Method name: `reverseArray`
 - Inputs: `String[] arr`
 - Returns: `None`
-- Description: Prints the original array then prints the array in reverse order
+- Description: Prints the original array, then prints the array in reverse order
 
 ## 1.4.5 — Making an Array
 ### Question 
@@ -46,8 +46,8 @@ for (int i = 0; i < 10; i++)
     a[i] = i * i;
 ```
 ### Result
-- You will recieve an compiler error stateing `variable a might not have been initialized`
-- If it has not been initialized then it is stil `null`, has not memory address
+- You will receive a compiler error stating `variable a might not have been initialized`
+- If it has not been initialized, then it is still `null`, and has no memory address
 
 ## 1.4.7 — Loopty Loop Array
 ### Question 
@@ -87,12 +87,12 @@ for (int i = 2; i < n; i++)
     a[i] = a[i-1] + a[i-2];
 ```
 ### Result
-- This retuns the first `10` digits of the Fibonacci Sequence
+- This returns the first `10` digits of the Fibonacci Sequence
 ```
 [1, 1, 2, 3, 5, 8, 13, 21, 34, 55]
 ```
 
-## 1.4.9 — Array Sequence
+## 1.4.9 — Equal Arrays
 ### Question
 - What does the following code fragment print?
 ```java
@@ -102,27 +102,3 @@ System.out.println(a == b);
 ```
 ### Result
 - This code returns `false` because arrays are `reference` types which means that the `==` operator check memory address not contents of the addresses
-
-## 1.4.11 — Method `howMany`
-- Method name: `howMany`
-- Inputs: `String[] arr`
-- Returns: `None`
-- Description: Prints the length of the inputed array
-
-## 1.4.13 — Method `copyArray`
-- Method name: `copyArray`
-- Inputs: `int[][] arr`
-- Returns: `None`
-- Description: Prints the original and a copied array to the console
-
-## 1.4.14 — Method `transposition`
-- Method name: `transposition`
-- Inputs: `int[][] arr`
-- Returns: `None`
-- Description: Prints the transposed array to the console
-
-## 1.4.15 — Method `advancedTransposition`
-- Method name: `advancedTransposition`
-- Inputs: `int[][] arr`
-- Returns: `None`
-- Description: Prints the transposed array to the console. Transposes without creating a new array
