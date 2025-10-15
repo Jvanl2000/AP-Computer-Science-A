@@ -102,3 +102,27 @@ System.out.println(a == b);
 ```
 ### Result
 - This code returns `false` because arrays are `reference` types which means that the `==` operator check memory address not contents of the addresses
+
+## 1.4.11 — Method `howMany`
+- Method name: `howMany`
+- Inputs: `String[] arr`
+- Returns: `None`
+- Description: Prints the length of the inputed array
+
+## 1.4.13 — Method `copyArray`
+- Method name: `copyArray`
+- Inputs: `int[][] arr`
+- Returns: `None`
+- Description: Prints the original and a copied array to the console
+
+## 1.4.14 — Method `transposition`
+- Method name: `transposition`
+- Inputs: `int[][] arr`
+- Returns: `None`
+- Description: Prints the transposed array to the console
+
+## 1.4.15 — Method `advancedTransposition`
+- Method name: `advancedTransposition`
+- Inputs: `int[][] arr`
+- Returns: `None`
+- Description: Prints the transposed array to the console. Transposes without creating a new array
