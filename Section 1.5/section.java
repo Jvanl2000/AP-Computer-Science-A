@@ -4,7 +4,7 @@ public class section {
         // positiveMaxMin();
         // meanAndDev(2);
         // longestConsec();
-        missingNumber(10);
+        //missingNumber(10);
     }
 
 
