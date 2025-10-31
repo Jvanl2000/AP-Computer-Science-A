@@ -109,7 +109,17 @@ public class section {
         StdOut.println("Missing Value: " + missing);
     }
 
+    //1.5.15
+    public static void closestPoint(int x, int y, int z) {
+        int curClosest = 0;
+        while (!StdIn.isEmpty()) {
+            int x1, y1, z1;
+            x1 = StdIn.readInt();
+            y1 = StdIn.readInt();
+            z1 = StdIn.readInt(); 
+        }
 
+    }
 
 
 
