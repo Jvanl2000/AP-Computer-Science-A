@@ -1,3 +1,4 @@
+import java.util.Arrays;
 public class section {
     public static void main(String[] args) {
         // maxMin();
@@ -5,6 +6,8 @@ public class section {
         // meanAndDev(2);
         // longestConsec();
         //missingNumber(10);
+        System.out.println(Arrays.deepToString(generateCirclePointArray(6)));
+
     }
 
 
@@ -109,18 +112,19 @@ public class section {
         StdOut.println("Missing Value: " + missing);
     }
 
-    //1.5.15
-    public static void closestPoint(int x, int y, int z) {
-        int curClosest = 0;
-        while (!StdIn.isEmpty()) {
-            int x1, y1, z1;
-            x1 = StdIn.readInt();
-            y1 = StdIn.readInt();
-            z1 = StdIn.readInt(); 
+
+    //1.5.19
+    public static double[][] generateCirclePointArray(int n) {
+        double incrementAngle = (2*Math.PI)/n;
+        double angle = 0;
+        double[][] pointArray = new double[n][2];
+        double radi = 0.4;
+        for (int i = 0; i < n; i++) {
+            pointArray[i] = new double[] {radi * Math.sin(angle)+0.5, radi * Math.cos(angle)+0.5};
+            angle = angle + incrementAngle;
         }
-
+        return pointArray;
     }
-
 
 
 
