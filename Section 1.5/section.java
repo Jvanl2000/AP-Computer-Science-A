@@ -5,8 +5,9 @@ public class section {
         // positiveMaxMin();
         // meanAndDev(2);
         // longestConsec();
-        //missingNumber(10);
-        System.out.println(Arrays.deepToString(generateCirclePointArray(6)));
+        // missingNumber(10);
+        // closestPoint(1, 2, 3);
+        // System.out.println(Arrays.deepToString(generateCirclePointArray(6)));
 
     }
 
@@ -66,7 +67,6 @@ public class section {
 
     }
 
-
     // 1.5.5
     public static void longestConsec() {
         int curLong = 0;
@@ -92,7 +92,6 @@ public class section {
         StdOut.print(curLong + 1 + " consecutive " + longestVal + "s.");
     }
     
-
     // 1.5.7
     public static void missingNumber(int n) {
         boolean[] values = new boolean[n];
@@ -112,6 +111,25 @@ public class section {
         StdOut.println("Missing Value: " + missing);
     }
 
+    // 1.5.15
+    public static void closestPoint(int x, int y, int z) {
+        int[] closestPoint = new int[3];
+        double closestDistance = Double.MAX_VALUE;
+        StdOut.println("Input x, y, and z values: ");
+        while (!StdIn.isEmpty()) {
+            int xi = StdIn.readInt();  
+            int yi = StdIn.readInt();  
+            int zi = StdIn.readInt();  
+            StdOut.println("Input x, y, and z values: ");
+
+            if ((Math.pow(x - xi, 2) + Math.pow(y - yi, 2) + Math.pow(z - zi, 2)) < closestDistance) {
+                closestDistance = (Math.pow(x - xi, 2) + Math.pow(y - yi, 2) + Math.pow(z - zi, 2));
+                closestPoint = new int[] {xi, yi, zi};
+            }
+        }
+
+        StdOut.println("Closest Point is: " + Arrays.toString(closestPoint));
+    }
 
     //1.5.19
     public static double[][] generateCirclePointArray(int n) {

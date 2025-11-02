@@ -22,24 +22,17 @@ FLFLFRFLFLFRFRFLFLFLFRFRFLFRFRF FLFLFRFLFLFRFRFRFLFLFRFRFLFRFRF
 - This "loops" the `Dragon` method and uses the output of the previous one for the inputs of the next
 
 ## 1.5.14 — 
-### A
-- Print the maximum and minimum numbers.
+### Print the maximum and minimum numbers.
 - No Array Needed
-### B
-- Print the sum of the squares of the n numbers.
+### Print the sum of the squares of the n numbers.
 - No Array Needed
-### C
-- Print the average of the n numbers.
+### Print the average of the n numbers.
 - No Array Needed
-### D
-- Print the median of the n numbers.
+### Print the median of the n numbers.
 - Array Needed
-### E
-- Print the percentage of numbers greater than the average.
+### Print the percentage of numbers greater than the average.
 - No Array Needed
-### F
-- Print the n numbers in increasing order.
+### Print the n numbers in increasing order.
 - Array Needed
-### G
-- Print the n numbers in random order.
+### Print the n numbers in random order.
 - Array Needed
