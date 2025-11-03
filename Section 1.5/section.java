@@ -8,7 +8,7 @@ public class section {
         // missingNumber(10);
         // closestPoint(1, 2, 3);
         // System.out.println(Arrays.deepToString(generateCirclePointArray(6)));
-
+        // drawRandomCirclePointArray(2000, 0.0001);
     }
 
 
@@ -132,6 +132,21 @@ public class section {
     }
 
     //1.5.19
+    public static void drawRandomCirclePointArray(int n, double p) {
+        double[][] points = generateCirclePointArray(n);
+
+        StdDraw.setCanvasSize(600, 600);
+        for (int i = 0; i < points.length; i++) { 
+            for (int j = 0; j < points.length; j++) {
+                double[] nextPoint = points[j];
+                if (Math.random() <= p)
+                    StdDraw.line(points[i][0], points[i][1], nextPoint[0], nextPoint[1]);
+            }
+        }
+
+        StdOut.println("Image Drawn!");
+    }
+
     public static double[][] generateCirclePointArray(int n) {
         double incrementAngle = (2*Math.PI)/n;
         double angle = 0;
