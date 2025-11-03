@@ -7,8 +7,8 @@ public class section {
         // longestConsec();
         // missingNumber(10);
         // closestPoint(1, 2, 3);
-        // System.out.println(Arrays.deepToString(generateCirclePointArray(6)));
-        // drawRandomCirclePointArray(2000, 0.0001);
+        // drawRandomCirclePointArray(5, 1);
+        // rose(6, 100);
     }
 
 
@@ -159,7 +159,27 @@ public class section {
         return pointArray;
     }
 
+    // 1.5.21
+    public static void rose(int n, int pointAmount) {
+        double[][] points = new double[pointAmount][2];
+        double increment = 2 * Math.PI / pointAmount;
+        double theta = 0;
 
+        for (int i = 0; i < pointAmount; i++) {
+            double r = (Math.sin(n * theta))/2;
+            points[i][0] = r * Math.sin(theta) + 0.5;
+            points[i][1] = r * Math.cos(theta) + 0.5;
+            theta = theta + increment;
+        }
+
+        StdDraw.setCanvasSize(600, 600);
+        for (int i = 0; i < points.length; i++) { 
+            int nextIndex = (i + 1) >= points.length ? 0 : (i + 1);
+            StdDraw.line(points[i][0], points[i][1], points[nextIndex][0], points[nextIndex][1]);
+        }
+
+        StdOut.println("Image Drawn!");
+    }
 
 
     // UTILITY METHODS
