@@ -9,6 +9,7 @@ public class section {
         // closestPoint(1, 2, 3);
         // drawRandomCirclePointArray(5, 1);
         // rose(6, 100);
+        // manyCircles(100, 1, 0.01, 0.05);
     }
 
 
@@ -181,6 +182,18 @@ public class section {
         StdOut.println("Image Drawn!");
     }
 
+    // 1.5.26
+    public static void manyCircles(int numCircles, double p, double min, double max) {
+        double[][] points = new double[numCircles][2];
+        for (double[] point : points) { point[0] = Math.random(); point[1] = Math.random(); }
+
+        for (double[] point : points) {
+            StdDraw.setPenColor(Math.random() <= p ? StdDraw.BLACK : StdDraw.WHITE);
+            StdDraw.filledCircle(point[0], point[1], min + (Math.random() * (max - min)));
+        }
+
+        StdOut.println("Image Drawn!");
+    }
 
     // UTILITY METHODS
 
