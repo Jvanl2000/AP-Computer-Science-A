@@ -10,7 +10,7 @@ public class section {
         // drawRandomCirclePointArray(5, 1);
         // rose(6, 100);
         // manyCircles(100, 1, 0.01, 0.05);
-        StdOut.println(Arrays.deepToString(spinograph(3, 2, 3)));
+        spinograph(0.021, 0.034, 0.098);
     }
 
 
@@ -197,16 +197,23 @@ public class section {
     }
 
     //1.5.31
-    public static double[][] spinograph(double R, double r, double a) {
+    public static void spinograph(double R, double r, double a) {
         double x, y;
-        double[][] xyArray = new double[100][2];
-        for (int t = 0; t < 100; t++) {
-            x = (R + r) * Math.cos(t) - (r + a ) * Math.cos((R + r)*t/r);
-            y = (R + r) * Math.sin(t) - (r + a ) * Math.sin((R + r)*t/r);
+        double[][] xyArray = new double[100_000][2];
+        for (int t = 0; t < xyArray.length; t++) {
+            x = (R + r) * Math.cos(t / 10.0) - (r + a) * Math.cos((R + r) * ((t / 10.0) / r));
+            y = (R + r) * Math.sin(t / 10.0) - (r + a) * Math.sin((R + r) * ((t / 10.0) / r));
             xyArray[t] = new double[] {x + 0.5, y + 0.5};
-
         } 
-        return xyArray;
+        
+        StdDraw.setCanvasSize(600, 600);
+        for (int i = 0; i < xyArray.length; i++) { 
+            int nextIndex = (i + 1) >= xyArray.length ? 0 : (i + 1);
+            StdDraw.line(xyArray[i][0], xyArray[i][1], xyArray[nextIndex][0], xyArray[nextIndex][1]);
+            // StdDraw.point(xyArray[i][0], xyArray[i][1]);
+        }
+
+        StdOut.println("Image Drawn!");
     }
 
 
