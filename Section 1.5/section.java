@@ -10,7 +10,10 @@ public class section {
         // drawRandomCirclePointArray(5, 1);
         // rose(6, 100);
         // manyCircles(100, 1, 0.01, 0.05);
-        spinograph(0.021, 0.034, 0.098);
+        //spinograph(0.021, 0.034, 0.098);
+        //double[] e = new double[] {1, 2, 3, 4};
+        //gravityBallIncrement(e);
+        //System.out.println(Arrays.toString(e));
     }
 
 
@@ -214,6 +217,24 @@ public class section {
         }
 
         StdOut.println("Image Drawn!");
+    }
+
+
+    public static void gravityBallIncrement(double[] locat) {
+        double a = -9.81;
+        double newX = locat[0] + 1/24 * locat[2];
+        double newY = locat[1] + ((locat[3] * 1/24) + 1/2 * a * (1/24) * (1/24));
+        double newYV = locat[3] + (1/24)*a;
+        double newXV = locat[2];
+        if (newX > 100 || newX < 0) {
+            newXV = -1 * newXV;
+        }
+        if (newYV > 100 || newYV < 100) {
+            newYV = -1 * newYV;
+        }
+        locat[0] = newX;
+        locat[1] = newX;
+        locat[3] = newXV;
     }
 
 
