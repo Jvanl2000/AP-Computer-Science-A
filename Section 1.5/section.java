@@ -10,10 +10,9 @@ public class section {
         // drawRandomCirclePointArray(5, 1);
         // rose(6, 100);
         // manyCircles(100, 1, 0.01, 0.05);
-        //spinograph(0.021, 0.034, 0.098);
-        //double[] e = new double[] {1, 2, 3, 4};
-        //gravityBallIncrement(e);
-        //System.out.println(Arrays.toString(e));
+        // spinograph(0.021, 0.034, 0.098);
+        // drawBouncingBall(new double[] {50, 50}, new double[] {23, -34}, 2);
+        // drawGravityBall(new double[] {25, 75}, new double[] {300, 400}, 3, -9.8, 0.55);
     }
 
 
@@ -199,7 +198,7 @@ public class section {
         StdOut.println("Image Drawn!");
     }
 
-    //1.5.31
+    // 1.5.31
     public static void spinograph(double R, double r, double a) {
         double x, y;
         double[][] xyArray = new double[100_000][2];
@@ -219,22 +218,66 @@ public class section {
         StdOut.println("Image Drawn!");
     }
 
+    // 1.5.34
+    public static void drawBouncingBall(double[] startPos, double[] startVel, double radius) {
+        double[] ballPos = new double[] {startPos[0], startPos[1]};
+        double[] ballVel = new double[] {startVel[0], startVel[1]};
+        
+        StdDraw.setCanvasSize(600, 600);
+        StdDraw.clear(StdDraw.GRAY);
+        StdDraw.enableDoubleBuffering();
+        StdDraw.setXscale(0, 100);
+        StdDraw.setYscale(0, 100);
 
-    public static void gravityBallIncrement(double[] locat) {
-        double a = -9.81;
-        double newX = locat[0] + 1/24 * locat[2];
-        double newY = locat[1] + ((locat[3] * 1/24) + 1/2 * a * (1/24) * (1/24));
-        double newYV = locat[3] + (1/24)*a;
-        double newXV = locat[2];
-        if (newX > 100 || newX < 0) {
-            newXV = -1 * newXV;
+        while (true) {
+            StdDraw.filledCircle(ballPos[0], ballPos[1], radius);
+            gravityBallIncrement(ballPos, ballVel, radius, 0, 1);
+            StdDraw.show();
+            StdDraw.pause(30);
         }
-        if (newYV > 100 || newYV < 100) {
-            newYV = -1 * newYV;
+    }
+
+    // 1.5.35
+    public static void drawGravityBall(double[] startPos, double[] startVel, double radius, double gravity, double elasticity) {
+        double[] ballPos = new double[] {startPos[0], startPos[1]};
+        double[] ballVel = new double[] {startVel[0], startVel[1]};
+        
+        StdDraw.setCanvasSize(600, 600);
+        StdDraw.enableDoubleBuffering();
+        StdDraw.setXscale(0, 100);
+        StdDraw.setYscale(0, 100);
+
+        while (true) {
+            StdDraw.clear();
+            StdDraw.filledCircle(ballPos[0], ballPos[1], radius);
+            gravityBallIncrement(ballPos, ballVel, radius, gravity, elasticity);
+            StdDraw.show();
+            StdDraw.pause(30);
         }
+    }
+
+    public static void gravityBallIncrement(double[] locat, double[] vel, double radius, double gravity, double elasticity) {
+        double newXV = vel[0];
+        double newYV = vel[1] + (1.0/24 * gravity);
+        double newX = locat[0] + (1.0/24 * newXV);
+        double newY = locat[1] + (1.0/24 * newYV);
+        if ((newX + radius) > 100 || (newX - radius) < 0) {
+            newXV *= (-1 * elasticity);
+            newYV *= elasticity;
+            if (((newX + radius) / 100.0) >= 1) newX = (100 - radius);
+            else newX = (0 + radius);
+        }
+        if ((newY + radius) > 100 || (newY - radius) < 0) {
+            newYV *= (-1 * elasticity);
+            newXV *= elasticity;
+            if (((newY + radius) / 100.0) >= 1) newY = (100 - radius);
+            else newY = (0 + radius);
+        }
+
         locat[0] = newX;
-        locat[1] = newX;
-        locat[3] = newXV;
+        locat[1] = newY;
+        vel[0] = newXV;
+        vel[1] = newYV;
     }
 
 
