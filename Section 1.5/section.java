@@ -13,6 +13,7 @@ public class section {
         // spinograph(0.021, 0.034, 0.098);
         // drawBouncingBall(new double[] {50, 50}, new double[] {23, -34}, 2);
         // drawGravityBall(new double[] {25, 75}, new double[] {300, 400}, 3, -9.8, 0.55);
+        // parityMatrix(4);
     }
 
 
@@ -229,12 +230,15 @@ public class section {
         StdDraw.setXscale(0, 100);
         StdDraw.setYscale(0, 100);
 
-        while (true) {
+        int i = 0;
+        while (i <= 100_000_000) {
             StdDraw.filledCircle(ballPos[0], ballPos[1], radius);
             gravityBallIncrement(ballPos, ballVel, radius, 0, 1);
-            StdDraw.show();
-            StdDraw.pause(30);
+            i++;
+            // StdDraw.show();
+            // StdDraw.pause(30);
         }
+        StdDraw.show();
     }
 
     // 1.5.35
@@ -280,6 +284,32 @@ public class section {
         vel[1] = newYV;
     }
 
+    // S2
+    public static void parityMatrix(int n) {
+        int x = -1;
+        int y = -1;
+
+        int[] col = new int[n];
+        for (int i = 0; i < n; i++) {
+            int sum = 0;
+            for (int j = 0; j < n; j++) {
+                int value = StdIn.readInt();
+                sum += value;
+                col[j] += value;
+            }
+
+            if ((sum % 2.0) != 0) {
+                for (int k = 0; k < n; k++) {
+                    if ((col[k] % 2) != 0) {
+                        if (x == -1) { StdOut.println("This has been CURRUPTED!"); break; }
+                    }
+                }
+            }
+
+            if (x == -1) { StdOut.println("This has NOT been currupted!"); }
+            else { StdOut.println("There is an error at [" + x + ", " + y + "]"); }
+        }
+    }
 
     // UTILITY METHODS
 
