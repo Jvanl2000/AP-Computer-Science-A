@@ -14,7 +14,18 @@ public class section {
         // drawBouncingBall(new double[] {50, 50}, new double[] {23, -34}, 2);
         // drawGravityBall(new double[] {25, 75}, new double[] {300, 400}, 3, -9.8, 0.55);
         // parityMatrix(4);
-        StdOut.println(Arrays.deepToString(spiral(3)));
+        StdDraw.setCanvasSize(600, 600);
+        StdDraw.enableDoubleBuffering();
+        double[][][] points = spiral(10);
+        for (double[][] pent : points) {
+            for (int i = 0; i < pent.length; i++) {
+                int nextIndex = (i + 1) >= pent.length ? 0 : (i + 1);
+                StdDraw.line(pent[i][0], pent[i][1], pent[nextIndex][0], pent[nextIndex][1]);
+            }
+        }
+
+        StdDraw.show();
+        StdOut.println("Image Drawn!");
     }
 
 
@@ -285,6 +296,34 @@ public class section {
         vel[1] = newYV;
     }
 
+    // S1
+    public static double[][] nextShape(double[][] firstShape, int N) {
+        double[][] newShape = new double[N][2];
+        for (int i = 0; i < N; i++) {
+            int e;
+            if (i == N - 1) {e = 0;}
+             else {e = i + 1;}
+            double x0 = firstShape[i][0];
+            double y0 = firstShape[i][1];
+            double x1 = firstShape[e][0];
+            double y1 = firstShape[e][1];
+            double newX = x0 + (x1 - x0) / N;
+            double newY = y0 + (y1 - y0) / N;
+            newShape[i] = new double[] {newX, newY};
+        }
+        return newShape;
+    }
+
+    public static double[][][] spiral(int N) {
+        double[][][] shapeArray = new double[1000][N][2];
+        shapeArray[0] = generateCirclePointArray(N);
+        for (int i = 1; i < shapeArray.length; i++) {
+            double[][] newShape = nextShape(shapeArray[i-1], N);
+            shapeArray[i] = newShape;
+        }
+        return shapeArray;
+    }
+
     // S2
     public static void parityMatrix(int n) {
         int x = -1;
@@ -311,34 +350,6 @@ public class section {
             else { StdOut.println("There is an error at [" + x + ", " + y + "]"); }
         }
     }
-
-    public static double[][] nextShape(double[][] firstShape, int N) {
-        double[][] newShape = new double[N][2];
-        for (int i = 0; i < N; i++) {
-            int e;
-            if (i == N - 1) {e = 0;}
-             else {e = i + 1;}
-            double x0 = firstShape[i][0];
-            double y0 = firstShape[i][1];
-            double x1 = firstShape[e][0];
-            double y1 = firstShape[e][1];
-            double newX = x0 + (x1 - x0) / N;
-            double newY = y0 + (y1 - y0) / N;
-            newShape[i] = new double[] {newX, newY};
-        }
-        return newShape;
-    }
-
-    public static double[][][] spiral(int N) {
-        double[][][] shapeArray = new double[2][N][2];
-        shapeArray[0] = generateCirclePointArray(N);
-        for (int i = 1; i < 2; i++) {
-            double[][] newShape = nextShape(shapeArray[i-1], N);
-            shapeArray[i] = newShape;
-        }
-        return shapeArray;
-    }
-
 
     // UTILITY METHODS
 
