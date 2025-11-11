@@ -7,26 +7,17 @@ public class section {
         // longestConsec();
         // missingNumber(10);
         // closestPoint(1, 2, 3);
-        // drawRandomCirclePointArray(5, 1);
-        // rose(6, 100);
-        // manyCircles(100, 1, 0.01, 0.05);
-        // spinograph(0.021, 0.034, 0.098);
-        // drawBouncingBall(new double[] {50, 50}, new double[] {23, -34}, 2);
-        // drawGravityBall(new double[] {25, 75}, new double[] {300, 400}, 3, -9.8, 0.55);
-        // parityMatrix(4);
-        //StdDraw.setCanvasSize(600, 600);
-        //StdDraw.enableDoubleBuffering();
-        //double[][][] points = spiral(10);
-        //for (double[][] pent : points) {
-        //    for (int i = 0; i < pent.length; i++) {
-        //        int nextIndex = (i + 1) >= pent.length ? 0 : (i + 1);
-        //       StdDraw.line(pent[i][0], pent[i][1], pent[nextIndex][0], pent[nextIndex][1]);
-        //    }
-        //}
 
-        //StdDraw.show();
-        //StdOut.println("Image Drawn!");
-        StdOut.println(Arrays.deepToString(takagi(3)));
+        // drawRandomCirclePointArray(10, 0.5);
+        // rose(3, 100);
+        // manyCircles(100, 1, 0.01, 0.05);
+        // spinograph(1, 2, 0.5);
+        // drawBouncingBall(new double[] {50, 50}, new double[] {23, -34}, 2);
+        // drawGravityBall(new double[] {25, 75}, new double[] {30, 40}, 3, -9.8, 0.55);
+        
+        // logSpiral(6);
+        // parityMatrix(4);
+        // drawTakagi(4);
     }
 
 
@@ -154,6 +145,7 @@ public class section {
         double[][] points = generateCirclePointArray(n);
 
         StdDraw.setCanvasSize(600, 600);
+        StdDraw.enableDoubleBuffering();
         for (int i = 0; i < points.length; i++) { 
             for (int j = 0; j < points.length; j++) {
                 double[] nextPoint = points[j];
@@ -162,16 +154,17 @@ public class section {
             }
         }
 
+        StdDraw.show();
         StdOut.println("Image Drawn!");
     }
 
     public static double[][] generateCirclePointArray(int n) {
-        double incrementAngle = (2*Math.PI)/n;
+        double incrementAngle = (2 * Math.PI) / n;
         double angle = 0;
         double[][] pointArray = new double[n][2];
         double radi = 0.4;
         for (int i = 0; i < n; i++) {
-            pointArray[i] = new double[] {radi * Math.sin(angle)+0.5, radi * Math.cos(angle)+0.5};
+            pointArray[i] = new double[] { radi * Math.sin(angle) + 0.5, radi * Math.cos(angle) + 0.5};
             angle = angle + incrementAngle;
         }
         return pointArray;
@@ -191,11 +184,13 @@ public class section {
         }
 
         StdDraw.setCanvasSize(600, 600);
+        StdDraw.enableDoubleBuffering();
         for (int i = 0; i < points.length; i++) { 
             int nextIndex = (i + 1) >= points.length ? 0 : (i + 1);
             StdDraw.line(points[i][0], points[i][1], points[nextIndex][0], points[nextIndex][1]);
         }
 
+        StdDraw.show();
         StdOut.println("Image Drawn!");
     }
 
@@ -204,11 +199,14 @@ public class section {
         double[][] points = new double[numCircles][2];
         for (double[] point : points) { point[0] = Math.random(); point[1] = Math.random(); }
 
+        StdDraw.setCanvasSize(600, 600);
+        StdDraw.enableDoubleBuffering();
         for (double[] point : points) {
             StdDraw.setPenColor(Math.random() <= p ? StdDraw.BLACK : StdDraw.WHITE);
             StdDraw.filledCircle(point[0], point[1], min + (Math.random() * (max - min)));
         }
 
+        StdDraw.show();
         StdOut.println("Image Drawn!");
     }
 
@@ -223,12 +221,13 @@ public class section {
         } 
         
         StdDraw.setCanvasSize(600, 600);
+        StdDraw.enableDoubleBuffering();
         for (int i = 0; i < xyArray.length; i++) { 
             int nextIndex = (i + 1) >= xyArray.length ? 0 : (i + 1);
             StdDraw.line(xyArray[i][0], xyArray[i][1], xyArray[nextIndex][0], xyArray[nextIndex][1]);
-            // StdDraw.point(xyArray[i][0], xyArray[i][1]);
         }
 
+        StdDraw.show();
         StdOut.println("Image Drawn!");
     }
 
@@ -243,15 +242,12 @@ public class section {
         StdDraw.setXscale(0, 100);
         StdDraw.setYscale(0, 100);
 
-        int i = 0;
-        while (i <= 100_000_000) {
+        while (true) {
             StdDraw.filledCircle(ballPos[0], ballPos[1], radius);
             gravityBallIncrement(ballPos, ballVel, radius, 0, 1);
-            i++;
-            // StdDraw.show();
-            // StdDraw.pause(30);
+            StdDraw.show();
+            StdDraw.pause(30);
         }
-        StdDraw.show();
     }
 
     // 1.5.35
@@ -298,6 +294,21 @@ public class section {
     }
 
     // S1
+    public static void logSpiral(int N) {
+        StdDraw.setCanvasSize(600, 600);
+        StdDraw.enableDoubleBuffering();
+        double[][][] points = spiral(N);
+        for (double[][] pent : points) {
+            for (int i = 0; i < pent.length; i++) {
+                int nextIndex = (i + 1) >= pent.length ? 0 : (i + 1);
+                StdDraw.line(pent[i][0], pent[i][1], pent[nextIndex][0], pent[nextIndex][1]);
+           }
+        }
+
+        StdDraw.show();
+        StdOut.println("Image Drawn!");
+    }
+
     public static double[][] nextShape(double[][] firstShape, int N) {
         double[][] newShape = new double[N][2];
         for (int i = 0; i < N; i++) {
@@ -324,54 +335,90 @@ public class section {
         }
         return shapeArray;
     }
+/*
+
+1 1 1 1
+1 0 1 0
+0 0 0 0
+0 1 0 1
+
+ */
+
 
     // S2
     public static void parityMatrix(int n) {
-        int x = -1;
-        int y = -1;
+        int[] rows = new int[n];
+        int[] cols = new int[n];
 
-        int[] col = new int[n];
-        for (int i = 0; i < n; i++) {
+        for (int row = 0; row < n; row++) {
             int sum = 0;
-            for (int j = 0; j < n; j++) {
+            for (int col = 0; col < n; col++) {
                 int value = StdIn.readInt();
+                cols[col] += value;
                 sum += value;
-                col[j] += value;
+            }
+            rows[row] = sum;
+        }
+
+        for (int i = 0; i < n; i++) {
+            if (rows[i] % 2 != 0) {
+                int wrongRow = i;
+                boolean isWrong = true;
+            }
+            else {
+                int wrongRow = i;
+                boolean isWrong = false;
             }
 
-            if ((sum % 2.0) != 0) {
-                for (int k = 0; k < n; k++) {
-                    if ((col[k] % 2) != 0) {
-                        if (x == -1) { StdOut.println("This has been CURRUPTED!"); break; }
-                    }
-                }
+        for (int i = 0; i < n; i++) {
+            if (rows[i] % 2 != 0) {
+                int wrongCol = i;
+                boolean isWrong = true;
             }
+            else {
+                int wrongCol = i;
+                boolean isWrong = false;
+            }
+            
+        }
 
-            if (x == -1) { StdOut.println("This has NOT been currupted!"); }
-            else { StdOut.println("There is an error at [" + x + ", " + y + "]"); }
+        if (isWrong) {
+            StdOut.println(Arrays.toString(new {wrongRow, wrongCol}));
         }
     }
 
-    //S3
+    // S3
+    public static void drawTakagi(int n) {
+        double[][] points = takagi(n);
+
+        StdDraw.setCanvasSize(600, 600);
+        StdDraw.enableDoubleBuffering();
+        for (int i = 0; i < points.length - 1; i++) {
+            StdDraw.line(points[i][0], points[i][1], points[i + 1][0], points[i + 1][1]);
+        } 
+
+        StdDraw.show();
+        StdOut.println("Image Drawn!");
+    }
+
     public static double sawtooth(double x) {
-        int nearestInt = (int) Math.round(x);
-        return x - nearestInt;
+        int nearestInt = (int) Math.rint(x);
+        return Math.abs(x - nearestInt);
     }
 
     public static double yTakagi(double x, int n) {
         double ySum = 0;
         for (int j = 0; j <= n; j++) {
-            ySum = ySum + ((1/Math.pow(2, j)) * sawtooth(Math.pow(2, j) * x));
+            ySum += ( (1 / (Math.pow(2, j))) * sawtooth(Math.pow(2, j) * x));
         }
         return ySum;
     }
 
     public static double[][] takagi(int n) {
         int pointNum = (int) Math.pow(2, n);
-        StdOut.println(pointNum);
-        double[][] points = new double[pointNum][2];
-        for (int i = 0; i < pointNum; i++) {
-            double x = ((double) i) / pointNum;
+        double[][] points = new double[pointNum+1][2];
+        for (int i = 0; i <= pointNum; i++) {
+            double x = (((double) i) / pointNum);
             double y = yTakagi(x, n);
             points[i] = new double[] {x, y};
         }
