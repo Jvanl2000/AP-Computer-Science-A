@@ -14,18 +14,19 @@ public class section {
         // drawBouncingBall(new double[] {50, 50}, new double[] {23, -34}, 2);
         // drawGravityBall(new double[] {25, 75}, new double[] {300, 400}, 3, -9.8, 0.55);
         // parityMatrix(4);
-        StdDraw.setCanvasSize(600, 600);
-        StdDraw.enableDoubleBuffering();
-        double[][][] points = spiral(10);
-        for (double[][] pent : points) {
-            for (int i = 0; i < pent.length; i++) {
-                int nextIndex = (i + 1) >= pent.length ? 0 : (i + 1);
-                StdDraw.line(pent[i][0], pent[i][1], pent[nextIndex][0], pent[nextIndex][1]);
-            }
-        }
+        //StdDraw.setCanvasSize(600, 600);
+        //StdDraw.enableDoubleBuffering();
+        //double[][][] points = spiral(10);
+        //for (double[][] pent : points) {
+        //    for (int i = 0; i < pent.length; i++) {
+        //        int nextIndex = (i + 1) >= pent.length ? 0 : (i + 1);
+        //       StdDraw.line(pent[i][0], pent[i][1], pent[nextIndex][0], pent[nextIndex][1]);
+        //    }
+        //}
 
-        StdDraw.show();
-        StdOut.println("Image Drawn!");
+        //StdDraw.show();
+        //StdOut.println("Image Drawn!");
+        StdOut.println(Arrays.deepToString(takagi(3)));
     }
 
 
@@ -349,6 +350,32 @@ public class section {
             if (x == -1) { StdOut.println("This has NOT been currupted!"); }
             else { StdOut.println("There is an error at [" + x + ", " + y + "]"); }
         }
+    }
+
+    //S3
+    public static double sawtooth(double x) {
+        int nearestInt = (int) Math.round(x);
+        return x - nearestInt;
+    }
+
+    public static double yTakagi(double x, int n) {
+        double ySum = 0;
+        for (int j = 0; j <= n; j++) {
+            ySum = ySum + ((1/Math.pow(2, j)) * sawtooth(Math.pow(2, j) * x));
+        }
+        return ySum;
+    }
+
+    public static double[][] takagi(int n) {
+        int pointNum = (int) Math.pow(2, n);
+        StdOut.println(pointNum);
+        double[][] points = new double[pointNum][2];
+        for (int i = 0; i < pointNum; i++) {
+            double x = ((double) i) / pointNum;
+            double y = yTakagi(x, n);
+            points[i] = new double[] {x, y};
+        }
+        return points;
     }
 
     // UTILITY METHODS
