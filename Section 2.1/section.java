@@ -7,6 +7,7 @@ public class section {
     //StdOut.println(areTriangular(3, 4, 5));
     //StdOut.println(sqrt(2));
     //StdOut.println(lg(5));
+    //StdOut.println(signum(-23));
   }
 
 //2.1.1
@@ -85,6 +86,28 @@ public class section {
     return closestLogVal-1; 
   }
 
+//2.1.11
+
+  public static int signum(int n) {
+    return (n == 0 ? 0 : n / Math.abs(n));  
+  }
+
+//2.1.14
+
+  public static int f(int d) {
+    int 2d = d * 2;
+    int sum = 0;
+    for (int i = 1; Math.pow(10, i) < 2d; i++) {
+      sum += 2d % Math.pow(10, i);
+    }
+    return sum;
+  }
+
+
+
+
 }
+
+
 
 
