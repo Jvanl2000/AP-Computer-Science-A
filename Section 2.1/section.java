@@ -8,6 +8,7 @@ public class section {
     //StdOut.println(sqrt(2));
     //StdOut.println(lg(5));
     //StdOut.println(signum(-23));
+    StdOut.println(f(9));
   }
 
 //2.1.1
@@ -95,15 +96,16 @@ public class section {
 //2.1.14
 
   public static int f(int d) {
-    int 2d = d * 2;
-    int sum = 0;
-    for (int i = 1; Math.pow(10, i) < 2d; i++) {
-      sum += 2d % Math.pow(10, i);
+    int d2 = d * 2;
+    int sum = d2%10;
+    while (d2 > 10) {
+      d2 = d2 / 10;
+      sum += d2%10;
     }
     return sum;
   }
 
-
+  
 
 
 }
