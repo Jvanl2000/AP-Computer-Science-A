@@ -92,6 +92,21 @@ public class section {
     }
     return sum;
   }
+
+  public static long checksum(int d) {
+    if (d%1000000000 > 9) {
+      StdOut.println("D must be a 10 Digit Integer");
+      return (long) d;
+    }
+    int[] digitArray = new int[10];
+    int i = 0;
+    while (d > 10) {
+      d = d / 10;
+      digitArray[i] = d % 10;
+      i++;
+    return 0;
+
+  }
 }
 
 
