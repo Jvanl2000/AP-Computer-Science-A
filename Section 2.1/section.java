@@ -12,6 +12,7 @@ public class section {
     // StdOut.println(lg(5));
     // StdOut.println(signum(-23)); // -1
     // StdOut.println(f(9));
+    StdOut.println(Arrays.toString(primefactors(10000)));
   }
 
   //2.1.1
@@ -104,11 +105,40 @@ public class section {
       d = d / 10;
       digitArray[i] = d % 10;
       i++;
+    }
     return 0;
 
   }
+
+
+
+
+  public static boolean isprime(int n) {
+    for (int i = 2; i < n/2; i++) {
+      if (n % i == 0) {return false;}
+    }
+    return true;
+  }
+
+  public static int[] primefactors(int n) {
+    if (isprime(n)) {
+      return new int[] {n};
+    }
+    int nextPrime = 2;
+    while (n%nextPrime != 0 && !(isprime(nextPrime))) {nextPrime++;}
+    int[] factorArray = new int[1+(primefactors(n/nextPrime).length)];
+    int index = 0;
+    for (int i = 2; i < n/2; i++) {
+      while (isprime(i) && n%i == 0) {
+        n = n/i; 
+        factorArray[index] = i;
+        index++;
+      }
+    }
+    return factorArray;
+  }
 }
-}
+
 
 
 
