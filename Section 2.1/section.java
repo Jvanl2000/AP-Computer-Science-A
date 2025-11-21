@@ -4,18 +4,38 @@ public class section {
   public static void main(String[] args) {
     // StdOut.println(max3(3, 2, 5)); // 5
     // StdOut.println(max3(3.0, 2.0, 5.0)); // 5.0
+
     // StdOut.println(odd(true, true, true)); // true
+
     // StdOut.println(majority(true, true, false)); // true
+
     // StdOut.println(eq(new int[] {1, 23, 3, 4}, new int[] {1, 3, 3})); // false
+
     // StdOut.println(areTriangular(3, 4, 5)); // true
+
     // StdOut.println(sqrt(2)); // 1.41421356237
+
     // StdOut.println(lg(5));
+
     // StdOut.println(signum(-23)); // -1
-    // StdOut.println(f(9));
-    StdOut.println(Arrays.toString(primefactors(10000)));
+
+    // StdOut.println(checksum("7992039871"));
+
+    // double[] scaleArr = new double[] {1.2, 3.8, 2.5, 4.1};
+    // scale(scaleArr);
+    // StdOut.println(Arrays.toString(scaleArr));
+
+    // String[] reverseArr = new String[] {"Hello", "World", "!"};
+    // StdOut.println(Arrays.toString(reverse(reverseArr)));
+    // reverseInplace(reverseArr);
+    // StdOut.println(Arrays.toString(reverseArr));
+
+    // StdOut.println(Arrays.deepToString(readBoolean2D()));
+
+    // StdOut.println(Arrays.toString(primefactors(10000)));
   }
 
-  //2.1.1
+  // 2.1.1
   public static int max3(int a, int b, int c) {
     int max = a;
     if (b > max)
@@ -34,7 +54,7 @@ public class section {
     return max;
   }
 
-  //2.1.2
+  // 2.1.2
   public static boolean odd(boolean a, boolean b, boolean c) {
     boolean[] trueCount = new boolean[] {a, b, c};
     int sum = 0;
@@ -46,7 +66,7 @@ public class section {
     return true;
   }
 
-  //2.1.3
+  // 2.1.3
   public static boolean majority(boolean a, boolean b, boolean c) {
     return (a && b) || (a && c) || (b && c);
   }
@@ -56,12 +76,12 @@ public class section {
     return Arrays.equals(a, b);
   }
 
-  //2.1.5
+  // 2.1.5
   public static boolean areTriangular(double a, double b, double c) {
     return !((a >= b + c) || (b >= a + c) || (c >= b + a));
   }
 
-  //2.1.7 
+  // 2.1.7 
   public static double sqrt(double c) { 
     double EPSILON = 1e-15;
     double t = c;
@@ -71,19 +91,34 @@ public class section {
     return t;
   }
 
-  //2.1.10
+  // 2.1.10
   public static int lg(int n) {
     int closestLogVal = 0;
     while (Math.pow(2, closestLogVal) <= n) {closestLogVal++;}
     return closestLogVal-1; 
   }
 
-  //2.1.11
+  // 2.1.11
   public static int signum(int n) {
     return (n == 0 ? 0 : n / Math.abs(n));  
   }
 
-  //2.1.14
+  // 2.1.12
+
+  // 2.1.14
+  public static String checksum(String d) {
+    int sum = Integer.parseInt(String.valueOf(d.charAt(0)));
+    for (int i = 1; i < 10; i++) {
+      if (i % 2 == 0) {
+        sum += Integer.parseInt(String.valueOf(d.charAt(i)));
+      } else {
+        sum += f(Integer.parseInt(String.valueOf(d.charAt(i))));
+      }
+    }
+
+    return d + String.valueOf(sum % 10);
+  }
+
   public static int f(int d) {
     int d2 = d * 2;
     int sum = d2 % 10;
@@ -91,24 +126,83 @@ public class section {
       d2 = d2 / 10;
       sum += d2 % 10;
     }
+
     return sum;
   }
 
-  public static long checksum(int d) {
-    if (d%1000000000 > 9) {
-      StdOut.println("D must be a 10 Digit Integer");
-      return (long) d;
-    }
-    int[] digitArray = new int[10];
-    int i = 0;
-    while (d > 10) {
-      d = d / 10;
-      digitArray[i] = d % 10;
-      i++;
-    }
-    return 0;
-
+  // 2.1.16
+  public static void scale(double[] arr) {
+    double max = max(arr);
+    double min = min(arr);
+    for (int i = 0; i < arr.length; i++) { arr[i] -= min; arr[i] /= (double) (Math.abs(max - min)); }
   }
+
+  public static double min(double[] arr) {
+    double min = arr[0];
+    for (double value : arr) {
+      if (value < min) min = value;
+    }
+
+    return min;
+  }
+
+  public static double max(double[] arr) {
+    double max = arr[0];
+    for (double value : arr) {
+      if (value > max) max = value;
+    }
+
+    return max;
+  }
+
+  // 2.1.17
+  public static String[] reverse(String[] arr) {
+    String[] newArr = new String[arr.length];
+    for (int i = 0; i < newArr.length; i++) {
+      newArr[i] = arr[arr.length - i - 1];
+    }
+
+    return newArr;
+  }
+
+  public static void reverseInplace(String[] arr) {
+    for (int i = 0; i < (arr.length / 2); i++) {
+      String temp = arr[i];
+      arr[i] = arr[arr.length - i - 1];
+      arr[arr.length - i - 1] = temp;
+    }
+  }
+
+  // 2.1.18
+  public static boolean[][] readBoolean2D() {
+    int rows;
+    int cols;
+    
+    StdOut.print("Input number of rows: ");
+    rows = StdIn.readInt();
+    StdOut.print("Input number of cols: ");
+    cols = StdIn.readInt();
+
+    boolean[][] booleanArr2D = new boolean[rows][cols];
+
+    StdOut.println("Input Array with True (1) and False (0) values: ");
+    for (int row = 0; row < rows; row++) {
+      for (int col = 0; col < cols; col++) {
+        booleanArr2D[row][col] = StdIn.readInt() == 1;
+      }
+    }
+
+    return booleanArr2D;
+  }
+
+
+
+
+
+
+
+
+
 
 
 
