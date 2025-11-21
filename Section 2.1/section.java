@@ -39,6 +39,12 @@ public class section {
     // int[][] multiplyB = new int[][] {{5, 1}, {8, 7}, {1, 2}};
     // StdOut.println(Arrays.deepToString(multiply(multiplyA, multiplyB)));
 
+    // boolean[] anyAllArr = new boolean[] {false, true, false};
+    // StdOut.println(any(anyAllArr));
+    // StdOut.println(all(anyAllArr));
+
+    StdOut.println(Arrays.toString(getPrimeFactors(4096)));
+
     // StdOut.println(Arrays.toString(primefactors(10000)));
   }
 
@@ -244,41 +250,46 @@ public class section {
     return newArr;
   }
 
+  // 2.1.22
+  public static boolean any(boolean[] arr) {
+    for (boolean bool : arr) {
+      if (bool) { return bool; }
+    }
 
+    return false;
+  }
 
+  public static boolean all(boolean[] arr) {
+    for (boolean bool : arr) {
+      if (!bool) { return bool; }
+    }
 
+    return true;
+  }
 
+  // 2.1.26
+  public static int[] getPrimeFactors(int n) {
+    if (isPrime(n)) {
+      return new int[] {n};
+    }
+    
+    int nextPrime = 2;
+    while (n % nextPrime != 0 || !(isPrime(nextPrime))) { nextPrime++; }
+    return combineArray(new int[] {nextPrime}, getPrimeFactors(n / nextPrime));
+  }
 
-
-
-
-  public static boolean isprime(int n) {
-    for (int i = 2; i < n/2; i++) {
+  public static boolean isPrime(int n) {
+    for (int i = 2; i <= (n / 2); i++) {
       if (n % i == 0) {return false;}
     }
     return true;
   }
 
-  public static int[] primefactors(int n) {
-    if (isprime(n)) {
-      return new int[] {n};
-    }
-    int nextPrime = 2;
-    while (n%nextPrime != 0 && !(isprime(nextPrime))) {nextPrime++;}
-    int[] factorArray = new int[1+(primefactors(n/nextPrime).length)];
-    int index = 0;
-    for (int i = 2; i < n/2; i++) {
-      while (isprime(i) && n%i == 0) {
-        n = n/i; 
-        factorArray[index] = i;
-        index++;
-      }
-    }
-    return factorArray;
+  public static int[] combineArray(int[] a, int[] b) {
+    int[] c = new int[a.length + b.length];
+    for (int i = 0; i < a.length; i++) { c[i] = a[i]; }
+    for (int i = a.length; i < a.length + b.length; i++) { c[i] = b[i - a.length]; }
+
+    return c;
   }
 }
-
-
-
-
-
