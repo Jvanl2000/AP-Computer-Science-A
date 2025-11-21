@@ -32,6 +32,13 @@ public class section {
 
     // StdOut.println(Arrays.deepToString(readBoolean2D()));
 
+    // int[] histogramArr = new int[] {1,1,5,8,9,6,6,3,1,4,5,8,7,3,5,0};
+    // StdOut.println(Arrays.toString(histogram(histogramArr, 10)));
+
+    // int[][] multiplyA = new int[][] {{4, 2, 5}, {7, 3, 2}, {7, 8, 9}};
+    // int[][] multiplyB = new int[][] {{5, 1}, {8, 7}, {1, 2}};
+    // StdOut.println(Arrays.deepToString(multiply(multiplyA, multiplyB)));
+
     // StdOut.println(Arrays.toString(primefactors(10000)));
   }
 
@@ -195,9 +202,47 @@ public class section {
     return booleanArr2D;
   }
 
+  // 2.1.19
+  public static int[] histogram(int[] arr, int m) {
+    int[] newArr = new int[m];
+    for (int value : arr) {
+      newArr[value] += 1;
+    }
 
+    return newArr;
+  }
 
+  // 2.1.21
+  public static int[][] multiply(int[][] a, int[][] b) {
+    int[][] newArr = new int[a.length][b[0].length];
 
+    for (int i = 0; i < newArr.length; i++) {
+      for (int j = 0; j < newArr[0].length; j++) {
+        newArr[i][j] = matrixMultiplicationSum(a[i], getCollum(b, j));
+      }
+    }
+
+    return newArr;
+  }
+
+  public static int matrixMultiplicationSum(int[] a, int[] b) {
+    int sum = 0;
+    for (int i = 0; i < a.length; i++) {
+      sum += (a[i] * b[i]);
+    }
+
+    return sum;
+  }
+
+  public static int[] getCollum(int[][] a, int collum) {
+    int[] newArr = new int[a.length];
+
+    for (int i = 0; i < a.length; i++) {
+      newArr[i] = a[i][collum];
+    }
+
+    return newArr;
+  }
 
 
 
