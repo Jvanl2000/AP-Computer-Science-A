@@ -43,9 +43,11 @@ public class section {
     // StdOut.println(any(anyAllArr));
     // StdOut.println(all(anyAllArr));
 
-    StdOut.println(Arrays.toString(getPrimeFactors(4096)));
+    //StdOut.println(Arrays.toString(getPrimeFactors(4096)));
 
     // StdOut.println(Arrays.toString(primefactors(10000)));
+    //StdOut.println(areCollinear(1, 1, 2, 2, 3, 3));
+    //randomWalk(5, 5, 100);
   }
 
   // 2.1.1
@@ -292,4 +294,39 @@ public class section {
 
     return c;
   }
+
+  //S1
+  public static boolean areCollinear(int x1, int y1, int x2, int y2, int x3, int y3) {
+
+    double slope1 = ((double) y1 - y2) / (x1 - x2);
+    double slope2 = ((double) y2 - y3) / (x2 - x3);
+    if (slope1 == slope2) {return true;}
+    return false;
+  }
+
+//S4
+  public static int gamble(int M) {
+    double win = Math.random();
+    if (win > 0.5) {
+      return M + 1;
+    }
+    else {return M - 1;}
+  }
+
+  public static int gambleSimul(int M, int N) {
+    for (int i = 0; i < N; i++) {M = gamble(M);}
+    return M;
+  }
+
+  public static void randomWalk(int M, int N, int t) {
+    int[] endArray = new int[M+N+1];
+    for (int i = 0; i < t; i++) {
+      endArray[gambleSimul(M, N)]++;
+    }
+    StdOut.println("In " + t + " Simulations, the Gambler wagered 1$ " + N + " times, starting with $" + M + ", and ended with:");
+    for (int i = 0; i < endArray.length; i++) {
+      StdOut.println("$" + i + " a total of " + endArray[i] + " times");
+    }
+  }
+
 }
