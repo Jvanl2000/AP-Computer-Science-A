@@ -43,11 +43,13 @@ public class section {
     // StdOut.println(any(anyAllArr));
     // StdOut.println(all(anyAllArr));
 
-    //StdOut.println(Arrays.toString(getPrimeFactors(4096)));
+    // StdOut.println(totient(21));
 
-    // StdOut.println(Arrays.toString(primefactors(10000)));
-    //StdOut.println(areCollinear(1, 1, 2, 2, 3, 3));
-    //randomWalk(5, 5, 100);
+    // StdOut.println(areCollinear(1, 1, 2, 2, 3, 3));
+
+    // randomWalk(5, 5, 100);
+
+    // StdOut.println(simulateCraps(100_000_000));
   }
 
   // 2.1.1
@@ -270,6 +272,34 @@ public class section {
   }
 
   // 2.1.26
+  public static int totient(int n) {
+    int sum = 0;
+    for (int i = 1; i <= n; i++) {
+      if (areRelativlyPrime(n, i)) {
+        sum += 1;
+      }
+    }
+
+    return sum;
+  }
+
+  public static boolean areRelativlyPrime(int n, int m) {
+    int[] nFactors = getPrimeFactors(n);
+    int[] mFactors = getPrimeFactors(m);
+
+    for (int nFactor : nFactors) {
+      if (nFactor != 1) {
+        for (int mFactor : mFactors) {
+          if (nFactor == mFactor) {
+            return false;
+          }
+        }
+      }
+    }
+
+    return true;
+  }
+
   public static int[] getPrimeFactors(int n) {
     if (isPrime(n)) {
       return new int[] {n};
@@ -295,16 +325,14 @@ public class section {
     return c;
   }
 
-  //S1
+  // S1
   public static boolean areCollinear(int x1, int y1, int x2, int y2, int x3, int y3) {
-
     double slope1 = ((double) y1 - y2) / (x1 - x2);
     double slope2 = ((double) y2 - y3) / (x2 - x3);
-    if (slope1 == slope2) {return true;}
-    return false;
+    return slope1 == slope2;
   }
 
-//S4
+  // S4
   public static int gamble(int M) {
     double win = Math.random();
     if (win > 0.5) {
@@ -323,10 +351,40 @@ public class section {
     for (int i = 0; i < t; i++) {
       endArray[gambleSimul(M, N)]++;
     }
-    StdOut.println("In " + t + " Simulations, the Gambler wagered 1$ " + N + " times, starting with $" + M + ", and ended with:");
+    StdOut.println("In " + t + " Simulations, the Gambler wagered $1, " + N + " times, starting with $" + M + ", and ended with:");
     for (int i = 0; i < endArray.length; i++) {
       StdOut.println("$" + i + " a total of " + endArray[i] + " times");
     }
+  }
+
+  // S5
+  public static double simulateCraps(int n) {
+    int sum = 0;
+
+    for (int i = 0; i < n; i++) {
+      sum += craps() ? 1 : 0;
+    }
+
+    return (double) sum / n;
+  }
+
+  public static boolean craps() {
+    int dieOne = (int) Math.ceil(Math.random() * 6);
+    int dieTwo = (int) Math.ceil(Math.random() * 6);
+    int x = dieOne + dieTwo;
+
+    if (x == 7 || x == 11) { return true; }
+    if (x == 2 || x == 3 || x == 12) { return false; }
+
+    while (true) { 
+        int tempOne = (int) Math.ceil(Math.random() * 6);
+        int tempTwo = (int) Math.ceil(Math.random() * 6);
+        int tempX = tempOne + tempTwo;
+
+        if (tempX == x) { return true; }
+        if (tempX == 7) { return false; }
+    }
+
   }
 
 }
