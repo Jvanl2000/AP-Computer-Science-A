@@ -1,3 +1,4 @@
+import java.util.Arrays;
 
 public class Matrix {
     // Class Variables
@@ -7,14 +8,11 @@ public class Matrix {
 
     // Provide test cases etc...
     public static void main(String[] args) {
-        Matrix mat = new Matrix(new double[][] {{0.386, 99, 1.0001, 4.8},
-                                                {55, -4, -0.1, 0},
-                                                {8, 8, 9.86, 2.8},
-                                                {3.14159, 21.418, 38.223, 0}});
+        Matrix mat = new Matrix(new double[][] {{1, 2, 3},
+                                                {0, 1, 4},
+                                                {5, 6, 0}});
 
-        System.out.println(Arrays.deepToString(mat.values));
-        System.out.println(mat.numberOfRows);
-        System.out.println(mat.numberOfCols);
+        System.out.println(mat.inverse());
     }
 
     // Constructor
@@ -22,6 +20,17 @@ public class Matrix {
         this.values = matrix;
         this.numberOfRows = matrix.length;
         this.numberOfCols = matrix[0].length;
+    }
+
+    // Turns 2D matrix into a string
+    @Override
+    public String toString() {
+        String string = "";
+        for (int row = 0; row < this.numberOfRows; row++) {
+            string += Arrays.toString(this.values[row]) + "\n";
+        }
+
+        return string;
     }
 
     // Scalar Multiplication
@@ -86,30 +95,13 @@ public class Matrix {
             );
         }
 
-        double[][] newArr = new double[this.values.length][this.values[0].length];
+        double[][] newArr = new double[this.numberOfRows][other.numberOfCols];
 
         for (int row = 0; row < this.numberOfRows; row++) 
-            for (int col = 0; col < this.numberOfCols; col++)
-                newArr[row][col] = matrixMultiplicationSum(this.values[row], getCollum(other.values, col));
+            for (int col = 0; col < other.numberOfCols; col++)
+                newArr[row][col] = dotProduct(this.values[row], other.getCollum(col).values[0]);
 
         return new Matrix(newArr);
-    }
-
-    private double matrixMultiplicationSum(double[] a, double[] b) {
-        double sum = 0;
-        for (int i = 0; i < a.length; i++)
-            sum += (a[i] * b[i]);
-
-        return sum;
-    }
-
-    private double[] getCollum(double[][] a, int collum) {
-        double[] newArr = new double[a.length];
-
-        for (int i = 0; i < a.length; i++) 
-            newArr[i] = a[i][collum];
-
-        return newArr;
     }
 
     // Matrices Transposition
@@ -123,34 +115,120 @@ public class Matrix {
         return new Matrix(newArr);
     }
 
+    // Returns the inverse of the current matrix
     public Matrix inverse() {
         if (this.numberOfRows != this.numberOfCols)
             throw new IllegalArgumentException("Cannot compute the inverse of a non-square matrix");
 
-        return new Matrix(this.values);
+        Matrix[] matrices = rowReduce(this, generateIdentity(this.numberOfRows));
+
+        return matrices[1];
     }
 
-    private double determinate(Matrix mat) {
-        if (mat.values.length == 2)
-            return (mat.values[0][0] * mat.values[1][1]) - (mat.values[0][1] * mat.values[1][0]);
+    private Matrix[] rowReduce(Matrix matrix, Matrix identity) {
+        Matrix thisMatrix = matrix.copy();
+        Matrix identityMatrix = identity.copy();
 
-        double deter = 0;
+        for (int pivot = 0; pivot < thisMatrix.numberOfRows; pivot++) {
+            for (int currentRow = pivot + 1; currentRow < thisMatrix.numberOfRows; currentRow++) {
+                if (thisMatrix.values[currentRow][pivot] == 0)
+                    continue;
 
-        for (int i = 0; i < mat.values.length; i++) {
-            double[][] newArr = new double[mat.values.length - 1][mat.values[0].length - 1];
-            for (int row = 0; row < mat.values.length; row++) {
-                for (int col = 0; col < mat.values[0].length; col++) {
-                    if (col != i && row != 0) {
-                        if (col < i) { newArr[row - 1][col] = mat.values[row][col]; }
-                        else { newArr[row - 1][col - 1] = mat.values[row][col]; }
-                    }
-                }
+                double scalar = -(thisMatrix.values[currentRow][pivot] / thisMatrix.values[pivot][pivot]);
+
+                thisMatrix = inverseOperation(thisMatrix, pivot, currentRow, scalar);
+                identityMatrix = inverseOperation(identityMatrix, pivot, currentRow, scalar);
             }
-
-            if (i % 2 == 0) { deter += (mat.values[0][i] * determinate(new Matrix(newArr))); }
-            else { deter -= (mat.values[0][i] * determinate(new Matrix(newArr))); }
         }
 
-        return deter;
+        for (int pivot = thisMatrix.numberOfRows - 1; pivot >= 0; pivot--) {
+            for (int currentRow = pivot - 1; currentRow >= 0; currentRow--) {
+                if (thisMatrix.values[currentRow][pivot] == 0)
+                    continue;
+                
+                double scalar = -(thisMatrix.values[currentRow][pivot] / thisMatrix.values[pivot][pivot]);
+
+                thisMatrix = inverseOperation(thisMatrix, pivot, currentRow, scalar);
+                identityMatrix = inverseOperation(identityMatrix, pivot, currentRow, scalar);
+            }
+        }
+
+        for (int pivot = 0; pivot < thisMatrix.numberOfRows; pivot++) {
+            thisMatrix = thisMatrix.multiplyRow(pivot, 1.0 / thisMatrix.values[pivot][pivot]);
+            identityMatrix = identityMatrix.multiplyRow(pivot, 1.0 / thisMatrix.values[pivot][pivot]);
+        }
+
+        return new Matrix[] {thisMatrix, identityMatrix};
+    }
+
+    // UTILITY FUNCTIONS
+    public Matrix getRow(int row) {
+        double[][] newArr = new double[1][this.numberOfCols];
+
+        for (int i = 0; i < this.numberOfCols; i++) 
+            newArr[0][i] = this.values[row][i];
+
+        return new Matrix(newArr);
+    }
+
+    public Matrix getCollum(int collum) {
+        double[][] newArr = new double[1][this.values.length];
+
+        for (int i = 0; i < this.values.length; i++) 
+            newArr[0][i] = this.values[i][collum];
+
+        return new Matrix(newArr);
+    }
+
+    private double dotProduct(double[] a, double[] b) {
+        double sum = 0;
+        for (int i = 0; i < a.length; i++)
+            sum += (a[i] * b[i]);
+
+        return sum;
+    }
+
+    private Matrix generateIdentity(int n) {
+        double[][] identityArray = new double[n][n];
+
+        for (int index = 0; index < n; index++)
+            identityArray[index][index] = 1;
+
+        return new Matrix(identityArray);
+    }
+
+    public Matrix copy() {
+        double[][] newArr = new double[this.numberOfRows][this.numberOfCols];
+
+        for (int row = 0; row < this.numberOfRows; row++)
+            for (int col = 0; col < this.numberOfCols; col++)
+                newArr[row][col] = this.values[row][col];
+
+        return new Matrix(newArr);
+    }
+
+    private Matrix inverseOperation(Matrix mat, int rowOne, int rowTwo, double scalar) {
+        Matrix newMatrix = mat.copy(); 
+
+        for (int col = 0; col < mat.numberOfCols; col++) {
+            newMatrix.values[rowTwo][col] += scalar * mat.values[rowOne][col];
+        }
+
+        return newMatrix;
+    }
+
+    public Matrix multiplyRow(int row, double scalar) {
+        double[][] newArr = new double[this.numberOfRows][this.numberOfCols];
+
+        for (int rowIndex = 0; rowIndex < this.numberOfRows; rowIndex++) {
+            for (int col = 0; col < this.numberOfCols; col++) {
+                if (rowIndex != row)
+                    newArr[rowIndex][col] = this.values[rowIndex][col];
+                else
+                    newArr[rowIndex][col] = this.values[rowIndex][col] * scalar;
+            }
+        }
+        
+        return new Matrix(newArr);
     }
 }
