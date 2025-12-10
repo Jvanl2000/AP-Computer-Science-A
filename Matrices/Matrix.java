@@ -8,11 +8,17 @@ public class Matrix {
 
     // Provide test cases etc...
     public static void main(String[] args) {
-        Matrix mat = new Matrix(new double[][] {{1, 2, 3},
-                                                {0, 1, 4},
-                                                {5, 6, 0}});
+        Matrix mat = new Matrix(new double[][] {{1, 1, 1, 1},
+                                                {2, 2, 2, 2},
+                                                {1, 1, 1, 1},
+                                                {3, -1, 2, -1}});
 
-        System.out.println(mat.inverse());
+        Matrix constants = new Matrix(new double[][] {{4},
+                                                     {8}, 
+                                                     {5}, 
+                                                     {7}});
+
+        System.out.println(mat.solveMatrix(constants));
     }
 
     // Constructor
@@ -154,11 +160,16 @@ public class Matrix {
         }
 
         for (int pivot = 0; pivot < thisMatrix.numberOfRows; pivot++) {
-            thisMatrix = thisMatrix.multiplyRow(pivot, 1.0 / thisMatrix.values[pivot][pivot]);
-            identityMatrix = identityMatrix.multiplyRow(pivot, 1.0 / thisMatrix.values[pivot][pivot]);
+            double scale = 1.0 / thisMatrix.values[pivot][pivot];
+            thisMatrix = thisMatrix.multiplyRow(pivot, scale);
+            identityMatrix = identityMatrix.multiplyRow(pivot, scale);
         }
 
         return new Matrix[] {thisMatrix, identityMatrix};
+    }
+
+    public Matrix solveMatrix(Matrix constants) {
+        return this.inverse().multiply(constants);
     }
 
     // UTILITY FUNCTIONS
