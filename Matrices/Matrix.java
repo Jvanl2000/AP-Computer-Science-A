@@ -8,69 +8,12 @@ public class Matrix {
 
     // Provide test cases etc...
     public static void main(String[] args) {
-        Matrix A = new Matrix(new double[][] {{1.0, 2.0, 3.0},
-                    {4.0, 5.0, 6.0},
-                    {7.0, 8.0, 9.0}}); 
-
-        Matrix B = new Matrix(new double[][] {{1.0, -2.0, 3.0},
-                                              {-4.0, 5.0, -6.0},
-                                              {7.0, -8.0, 9.0}});
-
-        Matrix C = new Matrix(new double[][] {{2.7, -3.5, 12.1, 13.4},
-                                              {7.7, -0.9, -2.3, 14.4},
-                                              {-3.6, 21.9, -3.1, -5.0}});
-
-        Matrix D = new Matrix(new double[][] {{7.2, -5.3, 1.1},
-                                              {7.7, -9.0, -3.2},
-                                              {-6.3, 9.2, -1.3},
-                                              {-6.1, 12.1, 2.2}});
-
-        System.out.println(A.add(B));
-        System.out.println();
-        System.out.println(A.scalarMultiplication(-3));
-        System.out.println();
-        System.out.println(A.multiply(B));
-        System.out.println();
-        System.out.println(C.multiply(D));
-        System.out.println();
-        System.out.println(D.multiply(C));
-        System.out.println();
-        System.out.println(B.subtract((C.multiply(D).multiply(A))));
-        System.out.println();
-        System.out.println(A.generateIdentity(4));
-        System.out.println();
-        
-        Matrix toInverse = new Matrix(new double[][] {{-1, 1},
-                                                      {2, 1}});
+        Matrix toInverse = new Matrix(new double[][] {{0, 2, 0},
+                                                      {3, 0, 0},
+                                                      {0, 0, 1}});
         System.out.println(toInverse.inverse());
         System.out.println();
         System.out.println(toInverse.inverse().multiply(toInverse));
-        System.out.println();
-
-        toInverse = new Matrix(new double[][] {{-1, 2, -3},
-                                               {1, 3, -2},
-                                               {-3, -2, 1}});
-        System.out.println(toInverse.inverse());
-        System.out.println();
-        System.out.println(toInverse.inverse().multiply(toInverse));
-        System.out.println();
-
-        toInverse = new Matrix(new double[][] {{1, 2, 3},
-                                               {2, 4, 6},
-                                               {-1, 1, 0}});
-        System.out.println(toInverse.inverse());
-        System.out.println();
-
-        Matrix toSolve = new Matrix(new double[][] {{1, 2, 3, 4},
-                                               {5, -2, 3, 4},
-                                               {12, -1, 0, 7},
-                                               {21, 0, -19, -1}});
-        Matrix coMatrix = new Matrix(new double[][] {{5},
-                                                     {-1},
-                                                     {15},
-                                                     {1}});
-        
-        System.out.println(toSolve.solveMatrix(coMatrix));
         System.out.println();
     }
 
@@ -184,13 +127,29 @@ public class Matrix {
         return matrices[1];
     }
 
+    // Inside the Matrix class
     private Matrix[] rowReduce(Matrix matrix, Matrix identity) {
         Matrix thisMatrix = matrix.copy();
         Matrix identityMatrix = identity.copy();
 
         for (int pivot = 0; pivot < thisMatrix.numberOfRows; pivot++) {
+            if (Math.abs(thisMatrix.values[pivot][pivot]) < 0.000000001) { 
+                int swapRow = -1;
+                for (int p = pivot + 1; p < thisMatrix.numberOfRows; p++) {
+                    if (Math.abs(thisMatrix.values[p][pivot]) > 0.000000001) {
+                        swapRow = p;
+                        break;
+                    }
+                }
+                
+                if (swapRow != -1) {
+                    thisMatrix = thisMatrix.swapRows(pivot, swapRow);
+                    identityMatrix = identityMatrix.swapRows(pivot, swapRow);
+                }
+            }
+
             for (int currentRow = pivot + 1; currentRow < thisMatrix.numberOfRows; currentRow++) {
-                if (thisMatrix.values[currentRow][pivot] == 0)
+                if (Math.abs(thisMatrix.values[currentRow][pivot]) < 0.000000001)
                     continue;
 
                 double scalar = -(thisMatrix.values[currentRow][pivot] / thisMatrix.values[pivot][pivot]);
@@ -202,7 +161,7 @@ public class Matrix {
 
         for (int pivot = thisMatrix.numberOfRows - 1; pivot >= 0; pivot--) {
             for (int currentRow = pivot - 1; currentRow >= 0; currentRow--) {
-                if (thisMatrix.values[currentRow][pivot] == 0)
+                if (Math.abs(thisMatrix.values[currentRow][pivot]) < 0.000000001)
                     continue;
                 
                 double scalar = -(thisMatrix.values[currentRow][pivot] / thisMatrix.values[pivot][pivot]);
@@ -294,5 +253,18 @@ public class Matrix {
         }
         
         return new Matrix(newArr);
+    }
+
+    public Matrix swapRows(int row1, int row2) {
+        if (row1 < 0 || row1 >= numberOfRows || row2 < 0 || row2 >= numberOfRows) {
+            throw new IndexOutOfBoundsException("Row index out of bounds");
+        }
+
+        Matrix newMatrix = this.copy();
+        double[] temp = newMatrix.values[row1];
+        newMatrix.values[row1] = newMatrix.values[row2];
+        newMatrix.values[row2] = temp;
+
+        return newMatrix;
     }
 }
