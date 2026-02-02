@@ -24,7 +24,37 @@ public class section {
         // System.out.println(intToBinary2(4));
 
         // System.out.println(gcf(6, 3));
+
+        // ex233(6);
+
+        // System.out.println(mystery(2, 25));
+
     }
+
+    public static int mystery(int a, int b) {
+        if (b == 0) return 0;
+        if (b % 2 == 0) return mystery(a+a, b/2);
+        return mystery(a+a, b/2) + a;
+    }
+
+    // 2.3.7
+    public static boolean gcdlike(int p, int q) {
+        if (q == 0) return (p == 1);
+        return gcdlike(q, p % q);
+    }
+
+    // 2.3.3
+    public static void ex233(int n) {
+        if (n <= 0) return;
+        System.out.println(n);
+        ex233(n-2);
+        ex233(n-3);
+        System.out.println(n);
+    }
+
+    // S6
+    // a_1 ​= 2
+    // a_n​ = 2(a_(n−1)​)^2  
 
     // S15-d
     public static int sumOfDigits(String num) {
@@ -39,14 +69,9 @@ public class section {
     }
 
     // S15-f    
-    public static int gcf(int m, int n) {
-        int e, f;
-        e = m; 
-        f = n; 
-        if (e > f) {n = e; m = f;}
-        
-        if (n % m == 0) {return m;}
-         else {return gcf(m, n % m);}
+    public static int gcd(int p, int q) {
+        if (q == 0) return p;
+        return gcd(q, p % q);
     }
     
     // S15-c
@@ -108,6 +133,7 @@ public class section {
         }
     }
 
+    // 2.3.15
     public static String intToBinary(int n) {
         String temp = "";
 
