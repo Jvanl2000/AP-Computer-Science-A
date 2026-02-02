@@ -1,304 +1,292 @@
 # Recurrence Relations & Closed Forms (Solutions)
 
-> Note: The prompt accidentally repeats the number **11**. I keep the *same* order of questions, but label the later items **11a, 11b** for clarity.
+> Note: The prompt accidentally repeats the number **11**. I keep the same order, but label the later items **11a** and **11b** for clarity.
 
 ---
 
 ## 1) Sequence: 1, 1, 1, 1, 1, 1, ...
 
 **Recurrence + initial condition**
-- \(a_1 = 1\)
-- \(a_n = a_{n-1}\) for \(n \ge 2\)
+
+* a₁ = 1
+* aₙ = aₙ₋₁ for n ≥ 2
 
 ---
 
 ## 2) Sequence: 1, 2, 3, 4, 5, 6, 7, ...
 
 **Recurrence + initial condition**
-- \(a_1 = 1\)
-- \(a_n = a_{n-1} + 1\) for \(n \ge 2\)
+
+* a₁ = 1
+* aₙ = aₙ₋₁ + 1 for n ≥ 2
 
 ---
 
 ## 3) Sequence: 2, 4, 6, 8, 10, 12, 14, ...
 
 **Recurrence + initial condition**
-- \(a_1 = 2\)
-- \(a_n = a_{n-1} + 2\) for \(n \ge 2\)
+
+* a₁ = 2
+* aₙ = aₙ₋₁ + 2 for n ≥ 2
 
 ---
 
 ## 4) Sequence: 1, -1, 1, -1, 1, -1, ...
 
 **Recurrence + initial condition**
-- \(a_1 = 1\)
-- \(a_n = -a_{n-1}\) for \(n \ge 2\)
+
+* a₁ = 1
+* aₙ = −aₙ₋₁ for n ≥ 2
 
 ---
 
 ## 5) Sequence: 1, 5, 17, 53, 161, 485, ...
 
 Check the pattern:
-- \(1 \mapsto 5\): \(3(1)+2=5\)
-- \(5 \mapsto 17\): \(3(5)+2=17\)
-- \(17 \mapsto 53\): \(3(17)+2=53\)
+
+* 1 → 5: 3(1) + 2 = 5
+* 5 → 17: 3(5) + 2 = 17
+* 17 → 53: 3(17) + 2 = 53
 
 **Recurrence + initial condition**
-- \(a_1 = 1\)
-- \(a_n = 3a_{n-1} + 2\) for \(n \ge 2\)
+
+* a₁ = 1
+* aₙ = 3aₙ₋₁ + 2 for n ≥ 2
 
 ---
 
 ## 6) Sequence: 2, 8, 128, 32768, 2147483648, ...
 
 Notice:
-- \(8 = 2\cdot 2^2\)
-- \(128 = 2\cdot 8^2\)
-- \(32768 = 2\cdot 128^2\)
+
+* 8 = 2 · 2²
+* 128 = 2 · 8²
+* 32768 = 2 · 128²
 
 **Recurrence + initial condition**
-- \(a_1 = 2\)
-- \(a_n = 2\,(a_{n-1})^2\) for \(n \ge 2\)
+
+* a₁ = 2
+* aₙ = 2(aₙ₋₁)² for n ≥ 2
 
 ---
 
-## 7) Sequence: 2, 3, 5, 8, 13, 21, 34, ...  (Fibonacci-type)
+## 7) Sequence: 2, 3, 5, 8, 13, 21, 34, ... (Fibonacci-type)
 
 **Recurrence + initial conditions**
-- \(a_1 = 2\)
-- \(a_2 = 3\)
-- \(a_n = a_{n-1} + a_{n-2}\) for \(n \ge 3\)
+
+* a₁ = 2
+* a₂ = 3
+* aₙ = aₙ₋₁ + aₙ₋₂ for n ≥ 3
 
 ---
 
 ## 8) Closed form for #3
 
-From #3: \(a_1=2\) and \(a_n=a_{n-1}+2\).
+From #3: a₁ = 2 and aₙ = aₙ₋₁ + 2.
 
 This is an arithmetic sequence with common difference 2:
 
-\[
-a_n = 2n
-\]
+**aₙ = 2n**
 
-(Quick check: \(n=1 \to 2\), \(n=2 \to 4\), \(n=3 \to 6\), etc.)
+Quick check: n = 1 → 2, n = 2 → 4, n = 3 → 6, etc.
 
 ---
 
 ## 9) Closed form for #4
 
-From #4: \(a_1=1\) and \(a_n=-a_{n-1}\).
+From #4: a₁ = 1 and aₙ = −aₙ₋₁.
 
 This alternates signs:
 
-\[
-a_n = (-1)^{n-1}
-\]
+**aₙ = (−1)^(n−1)**
 
-(Quick check: \(n=1 \to 1\), \(n=2 \to -1\), \(n=3 \to 1\), ...)
+Quick check: n = 1 → 1, n = 2 → −1, n = 3 → 1, ...
 
 ---
 
 ## 10) Closed form for #5
 
-From #5: \(a_1=1\), \(a_n=3a_{n-1}+2\).
+From #5: a₁ = 1, aₙ = 3aₙ₋₁ + 2.
 
-Solve using the standard method:
+**Solve:**
 
-1. Particular solution: try constant \(a = c\).
-   \[
-   c = 3c + 2 \Rightarrow -2c = 2 \Rightarrow c = -1
-   \]
-2. Homogeneous solution: \(a_n^{(h)} = C\cdot 3^{n-1}\).
-3. Combine:
-   \[
-   a_n = C\cdot 3^{n-1} - 1
-   \]
-4. Use \(a_1=1\):
-   \[
-   1 = C\cdot 3^{0} - 1 \Rightarrow C = 2
-   \]
+1. Particular solution: try a constant a = c
+   c = 3c + 2
+   −2c = 2
+   c = −1
 
-\[
-\boxed{a_n = 2\cdot 3^{n-1} - 1}
-\]
+2. Homogeneous solution: aₙ^(h) = C · 3^(n−1)
+
+3. Combine: aₙ = C · 3^(n−1) − 1
+
+4. Use a₁ = 1:
+   1 = C · 3^0 − 1
+   1 = C − 1
+   C = 2
+
+**Answer:**
+**aₙ = 2 · 3^(n−1) − 1**
 
 ---
 
 ## 11a) Closed form for #6
 
-From #6: \(a_1=2\), \(a_n = 2(a_{n-1})^2\).
+From #6: a₁ = 2, aₙ = 2(aₙ₋₁)².
 
-Let \(a_n = 2^{b_n}\). Then:
+Let aₙ = 2^(bₙ). Then:
 
-\[
-2^{b_n} = 2\left(2^{b_{n-1}}\right)^2 = 2^{1+2b_{n-1}}
-\]
-So
-\[
-b_n = 1 + 2b_{n-1}, \quad b_1=1
-\]
+2^(bₙ) = 2(2^(bₙ₋₁))² = 2^(1 + 2bₙ₋₁)
 
-Solve:
-- This recurrence gives \(b_n = 2^n - 1\) (you can verify by induction).
+So:
+
+* bₙ = 1 + 2bₙ₋₁
+* b₁ = 1
+
+This solves to:
+
+**bₙ = 2^n − 1**
 
 Therefore:
-\[
-\boxed{a_n = 2^{2^n - 1}}
-\]
+
+**aₙ = 2^(2^n − 1)**
 
 Check quickly:
-- \(n=1:\ 2^{2^1-1}=2^1=2\)
-- \(n=2:\ 2^{3}=8\)
-- \(n=3:\ 2^{7}=128\)
-- \(n=4:\ 2^{15}=32768\)
-- \(n=5:\ 2^{31}=2147483648\)
+
+* n=1: 2^(2−1)=2¹=2
+* n=2: 2^(4−1)=2³=8
+* n=3: 2^(8−1)=2⁷=128
+* n=4: 2^(16−1)=2¹⁵=32768
+* n=5: 2^(32−1)=2³¹=2147483648
 
 ---
 
-## 11b) Verify \(A_n = 2n + 1\) solves \(A_n = 2A_{n-1} - 1\), \(A_1=3\)
+## 11b) Verify Aₙ = 2n + 1 is a solution to Aₙ = 2Aₙ₋₁ − 1 with A₁ = 3
 
 **Base case (n = 1):**
-\[
-A_1 = 2(1)+1=3
-\]
-Matches \(A_1=3\).
 
-**Recurrence check:**
-Assume \(A_{n-1}=2(n-1)+1=2n-1\). Then
-\[
-2A_{n-1}-1 = 2(2n-1)-1 = 4n-2-1 = 4n-3
-\]
-But
-\[
-A_n = 2n+1
-\]
-These are not equal, so \(A_n=2n+1\) **does not** satisfy the recurrence \(A_n = 2A_{n-1}-1\).
+* A₁ = 2(1) + 1 = 3 ✅ matches A₁ = 3
 
-✅ Likely typo: \(A_n = 2n+1\) *does* satisfy:
-\[
-A_n = A_{n-1} + 2,\quad A_1=3
-\]
-because
-\[
-A_{n-1}+2 = (2(n-1)+1)+2 = 2n+1
-\]
+**Check the recurrence:**
+If Aₙ = 2n + 1, then:
 
-If the recurrence truly is \(A_n = 2A_{n-1}-1\) with \(A_1=3\), then the correct closed form is:
-\[
-A_n = 2^n + 1
-\]
-since \(2^1+1=3\) and \(2(2^{n-1}+1)-1 = 2^n+1\).
+* Aₙ₋₁ = 2(n−1) + 1 = 2n − 1
+
+Compute the right-hand side:
+
+* 2Aₙ₋₁ − 1 = 2(2n − 1) − 1 = 4n − 2 − 1 = 4n − 3
+
+But the left-hand side is:
+
+* Aₙ = 2n + 1
+
+Since 2n + 1 ≠ 4n − 3 (for general n), **Aₙ = 2n + 1 is NOT a solution** to Aₙ = 2Aₙ₋₁ − 1.
+
+✅ Likely typo: Aₙ = 2n + 1 **does** satisfy:
+
+* Aₙ = Aₙ₋₁ + 2, with A₁ = 3
+
+Extra: If the recurrence truly is Aₙ = 2Aₙ₋₁ − 1 with A₁ = 3, then the correct closed form is:
+
+* **Aₙ = 2^n + 1**
 
 ---
 
-## 12) \(S_n = n + S_{n-1}\), \(S_1=1\)
+## 12) Sₙ = n + Sₙ₋₁ with S₁ = 1
 
 ### First 6 terms
-- \(S_1 = 1\)
-- \(S_2 = 2 + 1 = 3\)
-- \(S_3 = 3 + 3 = 6\)
-- \(S_4 = 4 + 6 = 10\)
-- \(S_5 = 5 + 10 = 15\)
-- \(S_6 = 6 + 15 = 21\)
 
-So: **1, 3, 6, 10, 15, 21**
+* S₁ = 1
+* S₂ = 2 + 1 = 3
+* S₃ = 3 + 3 = 6
+* S₄ = 4 + 6 = 10
+* S₅ = 5 + 10 = 15
+* S₆ = 6 + 15 = 21
 
-### Verify \(S_n = \dfrac{n(n+1)}{2}\)
+Sequence: **1, 3, 6, 10, 15, 21**
 
-Assume \(S_{n-1}=\dfrac{(n-1)n}{2}\). Then:
-\[
-S_n = n + S_{n-1}
-= n + \frac{(n-1)n}{2}
-= \frac{2n}{2} + \frac{n(n-1)}{2}
-= \frac{n(2 + n - 1)}{2}
-= \frac{n(n+1)}{2}
-\]
-Verified.
+### Verify closed form: Sₙ = n(n + 1) / 2
+
+Assume Sₙ₋₁ = (n−1)n / 2.
+
+Then:
+Sₙ = n + Sₙ₋₁
+= n + (n−1)n / 2
+= 2n/2 + n(n−1)/2
+= [n(2 + n − 1)] / 2
+= n(n + 1) / 2 ✅ verified
 
 ---
 
-## 13) \(S_n = S_{n-1} + n^2\), \(S_1=1\)
+## 13) Sₙ = Sₙ₋₁ + n² with S₁ = 1
 
 ### First 6 terms
-- \(S_1 = 1\)
-- \(S_2 = 1 + 2^2 = 5\)
-- \(S_3 = 5 + 3^2 = 14\)
-- \(S_4 = 14 + 4^2 = 30\)
-- \(S_5 = 30 + 5^2 = 55\)
-- \(S_6 = 55 + 6^2 = 91\)
 
-So: **1, 5, 14, 30, 55, 91**
+* S₁ = 1
+* S₂ = 1 + 2² = 5
+* S₃ = 5 + 3² = 14
+* S₄ = 14 + 4² = 30
+* S₅ = 30 + 5² = 55
+* S₆ = 55 + 6² = 91
 
-### Verify \(S_n = \dfrac{n(n+1)(2n+1)}{6}\)
+Sequence: **1, 5, 14, 30, 55, 91**
 
-Assume \(S_{n-1}=\dfrac{(n-1)n(2n-1)}{6}\). Then:
-\[
-S_n = S_{n-1} + n^2
-= \frac{(n-1)n(2n-1)}{6} + n^2
-= \frac{(n-1)n(2n-1) + 6n^2}{6}
-\]
-Factor \(n\):
-\[
-= \frac{n\bigl((n-1)(2n-1) + 6n\bigr)}{6}
-\]
-Expand \((n-1)(2n-1)=2n^2-3n+1\):
-\[
-= \frac{n(2n^2-3n+1+6n)}{6}
-= \frac{n(2n^2+3n+1)}{6}
-\]
-Factor \(2n^2+3n+1=(n+1)(2n+1)\):
-\[
-= \frac{n(n+1)(2n+1)}{6}
-\]
-Verified.
+### Verify closed form: Sₙ = n(n + 1)(2n + 1) / 6
+
+Assume Sₙ₋₁ = (n−1)n(2n−1) / 6.
+
+Then:
+Sₙ = Sₙ₋₁ + n²
+= ( (n−1)n(2n−1) / 6 ) + n²
+= [ (n−1)n(2n−1) + 6n² ] / 6
+= [ n((n−1)(2n−1) + 6n) ] / 6
+
+Compute (n−1)(2n−1) = 2n² − 3n + 1:
+= [ n(2n² − 3n + 1 + 6n) ] / 6
+= [ n(2n² + 3n + 1) ] / 6
+
+Factor 2n² + 3n + 1 = (n + 1)(2n + 1):
+= n(n + 1)(2n + 1) / 6 ✅ verified
 
 ---
 
 ## 14) Multidimensional recurrence (Pascal / binomial style)
 
-The recurrence described is the standard binomial-coefficient recurrence:
+The recurrence described is the standard binomial coefficient recurrence:
 
-\[
-\binom{n}{k} = \binom{n-1}{k-1} + \binom{n-1}{k}
-\]
-with boundary values:
-- if \(k=0\) or \(k=n\), then \(\binom{n}{k}=1\)
+C(n, k) = C(n−1, k−1) + C(n−1, k)
 
-Compute \(\binom{5}{3}\):
+Boundary values:
 
-\[
-\binom{5}{3}=\binom{4}{2}+\binom{4}{3}
-\]
+* If k = 0 or k = n, then C(n, k) = 1
 
-Now compute each:
+Find C(5, 3):
 
-\[
-\binom{4}{2}=\binom{3}{1}+\binom{3}{2}
-\]
-\[
-\binom{3}{1}=\binom{2}{0}+\binom{2}{1}=1+2=3
-\]
-\[
-\binom{3}{2}=\binom{2}{1}+\binom{2}{2}=2+1=3
-\]
+C(5, 3) = C(4, 2) + C(4, 3)
+
+Compute C(4, 2):
+
+* C(4, 2) = C(3, 1) + C(3, 2)
+
+Compute C(3, 1):
+
+* C(3, 1) = C(2, 0) + C(2, 1) = 1 + 2 = 3
+
+Compute C(3, 2):
+
+* C(3, 2) = C(2, 1) + C(2, 2) = 2 + 1 = 3
+
 So:
-\[
-\binom{4}{2}=3+3=6
-\]
 
-Also:
-\[
-\binom{4}{3}=\binom{3}{2}+\binom{3}{3}=3+1=4
-\]
+* C(4, 2) = 3 + 3 = 6
+
+Compute C(4, 3):
+
+* C(4, 3) = C(3, 2) + C(3, 3) = 3 + 1 = 4
 
 Finally:
-\[
-\binom{5}{3}=6+4=10
-\]
 
-\[
-\boxed{\binom{5}{3}=10}
-\]
+* C(5, 3) = 6 + 4 = **10**
+
+**Answer: C(5, 3) = 10**
 
 ---
