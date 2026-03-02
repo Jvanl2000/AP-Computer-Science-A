@@ -26,11 +26,11 @@ public class Rectangle {
         height = h;
     }
 
-    // public Rectangle(double x1, double y1, double x2, double y2) {
-    //     this.x = Math.min(x1, x2);
-    //     this.y = Math.min(y1, y2);
-    //     this.width = Math.abs(x2 - x1);
-    //     this.height = Math.abs(y2 - y1);
+    // public Rectangle(double x0, double y0, double w, double h) {
+    //     this.x0 = x0 - w/2;
+    //     this.y0 = y0 - h/2;
+    //     this.x1 = x0 + w/2;
+    //     this.y1 = y0 + h/2;
     // }
 
     public double area() { 
@@ -39,7 +39,7 @@ public class Rectangle {
 
     public double perimeter() {
         return 2 * (width + height);
-    }
+    }   
 
     public boolean contains(Rectangle b) { 
         return (b.x >= this.x) && (b.y >= this.y) &&
@@ -48,7 +48,7 @@ public class Rectangle {
     }
     
     public void draw() { 
-        StdDraw.rectangle(x + width/2, y + height/2, width/2, height/2);  
+        StdDraw.rectangle(x, y, width/2, height/2);  
     }
 
     @Override
@@ -57,26 +57,21 @@ public class Rectangle {
     }
 
     public static void main(String[] args) {
-        StdDraw.setScale(0, 100);
-
-        int n = 5;
-        double min = 0.0;
-        double max = 100.0;
-
+        int n = 10;
+        double min = 0.5;
+        double max = 1.0;
         double totalArea = 0.0;
         double totalPerimeter = 0.0;
 
         for (int i = 0; i < n; i++) {
-            double x = Math.random() * (max - min) + min;
-            double y = Math.random() * (max - min) + min;
-            double w = Math.random() * (max - x);
-            double h = Math.random() * (max - y);
-
-            Rectangle rect = new Rectangle(x, y, w, h);
-            totalArea += rect.area();
-            totalPerimeter += rect.perimeter();
+            double width = Math.random() * (max - min) + min;
+            double height = Math.random() * (max - min) + min;
+            Rectangle rect = new Rectangle(0.5, 0.5, width, height);
 
             rect.draw();
+
+            totalArea += rect.area();
+            totalPerimeter += rect.perimeter();
         }
 
         System.out.println("Average area: " + (totalArea / n));

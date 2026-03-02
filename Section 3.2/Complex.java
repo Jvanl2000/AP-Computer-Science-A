@@ -68,25 +68,37 @@ public class Complex {
     }
         
     public static void main(String[] args) {
-        double a = 1.0;
-        double b = 4.0;
-        double c = 5.0;
+        double a = 3.0;
+        double b = -4.0;
+        double c = 12.0;
 
-        Complex root1 = new Complex(-b, Math.sqrt(Math.abs(b*b - 4.0*a*c))).times(new Complex(1.0/(2.0*a), 0.0));
-        Complex root2 = new Complex(-b, -Math.sqrt(Math.abs(b*b - 4.0*a*c))).times(new Complex(1.0/(2.0*a), 0.0));
+        Complex root1;
+        Complex root2;
+
+        double discriminant = b*b - 4*a*c;
+        if (discriminant < 0) {
+            root1 = new Complex(-b/(2*a), Math.sqrt(-discriminant)/(2*a));
+            root2 = new Complex(-b/(2*a), -Math.sqrt(-discriminant)/(2*a));
+        } else if (discriminant == 0) {
+            root1 = new Complex(-b/(2*a), 0);
+            root2 = null;
+        } else {
+            root1 = new Complex((-b + Math.sqrt(discriminant)) / (2*a), 0);
+            root2 = new Complex((-b - Math.sqrt(discriminant)) / (2*a), 0);
+        }
 
         System.out.println("root1 = " + root1);
         System.out.println("root2 = " + root2);
 
-        Complex z1 = new Complex(1, 2);
-        Complex z2 = new Complex(3, 4);
-        System.out.println("z1 + z2 = " + z1.plus(z2));
-        System.out.println("z1 - z2 = " + z1.minus(z2));
-        System.out.println("z1 * z2 = " + z1.times(z2));
-        System.out.println("z1 / z2 = " + z1.divides(z2));
-        System.out.println("z1^3 = " + z1.power(3));
-        System.out.println("theta(z1) = " + z1.theta());
-        System.out.println("|z1| = " + z1.abs());
-        System.out.println("conjugate(z1) = " + z1.conjugate());
+        // Complex z1 = new Complex(1, 2);
+        // Complex z2 = new Complex(3, 4);
+        // System.out.println("z1 + z2 = " + z1.plus(z2));
+        // System.out.println("z1 - z2 = " + z1.minus(z2));
+        // System.out.println("z1 * z2 = " + z1.times(z2));
+        // System.out.println("z1 / z2 = " + z1.divides(z2));
+        // System.out.println("z1^3 = " + z1.power(3));
+        // System.out.println("theta(z1) = " + z1.theta());
+        // System.out.println("|z1| = " + z1.abs());
+        // System.out.println("conjugate(z1) = " + z1.conjugate());
     }
 }
