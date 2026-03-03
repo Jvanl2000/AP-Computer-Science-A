@@ -62,29 +62,38 @@ public class Quaternion {
     }
 
     public static void main(String[] args) {
-        Quaternion A = new Quaternion(1, 2, 3, 4);
-        Quaternion B = new Quaternion(-7, 12, -3, 5);
-        Quaternion C = new Quaternion(0.5, 1.0/3, -Math.PI, Math.E);
-        Quaternion R = new Quaternion(1, 0, 0, 0);
-        Quaternion I = new Quaternion(0, 1, 0, 0);
-        Quaternion J = new Quaternion(0, 0, 1, 0);
-        Quaternion K = new Quaternion(0, 0, 0, 1);
-        StdOut.println(A);
-        StdOut.println(B);
-        StdOut.println(C);
-        StdOut.println(R);
-        StdOut.println(I);
-        StdOut.println(J);
-        StdOut.println(K);
-        StdOut.println(A.mag());
-        StdOut.println(B.conj());
-        StdOut.println(A.add(B));
-        StdOut.println(B.scalarProd(3));
-        StdOut.println(A.prod(B));
-        StdOut.println(B.prod(A));
-        StdOut.println(A.inv());
-        StdOut.println(A.div(B));
-        StdOut.println(B.div(A));
-    }
+        // Quaternion A = new Quaternion(1, 2, 3, 4);
+        // Quaternion B = new Quaternion(-7, 12, -3, 5);
+        // Quaternion C = new Quaternion(0.5, 1.0/3, -Math.PI, Math.E);
+        // Quaternion R = new Quaternion(1, 0, 0, 0);
+        // Quaternion I = new Quaternion(0, 1, 0, 0);
+        // Quaternion J = new Quaternion(0, 0, 1, 0);
+        // Quaternion K = new Quaternion(0, 0, 0, 1);
+        // StdOut.println(A);
+        // StdOut.println(B);
+        // StdOut.println(C);
+        // StdOut.println(R);
+        // StdOut.println(I);
+        // StdOut.println(J);
+        // StdOut.println(K);
+        // StdOut.println(A.mag());
+        // StdOut.println(B.conj());
+        // StdOut.println(A.add(B));
+        // StdOut.println(B.scalarProd(3));
+        // StdOut.println(A.prod(B));
+        // StdOut.println(B.prod(A));
+        // StdOut.println(A.inv());
+        // StdOut.println(A.div(B));
+        // StdOut.println(B.div(A));
 
+        Quaternion A = new Quaternion(0, 1, 0, 0);
+        Quaternion B = new Quaternion(0, 0, 1, 0);
+        Quaternion C = new Quaternion(0, 0, 0, 1);
+        StdOut.println("i^2 = " + A.prod(A));
+        StdOut.println("j^2 = " + B.prod(B));
+        StdOut.println("k^2 = " + C.prod(C));
+        StdOut.println("i*j*k = " + A.prod(B).prod(C));
+        StdOut.println("(i*j*k)^2 = " + A.prod(B).prod(C).prod(A.prod(B).prod(C)));
+        StdOut.println("i^2 * j^2 * k^2 = " + A.prod(A).prod(B.prod(B)).prod(C.prod(C)));
+    }
 }
