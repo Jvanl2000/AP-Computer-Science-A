@@ -1,18 +1,127 @@
+import java.util.List;
+import java.util.ArrayList;
+
 public class section {
 
     public static void main(String[] args) {
         int startValue = 2;
-        int iterations = 100;
+        int iterations = 1000;
 
         double lastTimeTaken = 0;
         for (int i = 1; i <= iterations; i++) {
-            double timeTaken = FourSumTest(startValue);
+            double timeTaken = randomTest(startValue);
             System.out.println("Input: " + startValue + ", Time taken: " + timeTaken + " seconds" + (lastTimeTaken > 0 ? ", Ratio: " + (timeTaken / lastTimeTaken) : ""));
             lastTimeTaken = timeTaken;
 
             startValue *= 2;
+        }        
+    }
+
+    // S8
+    public static void mergeArraysMutate(int[] arr, int startSecondPart) {
+        int i = 0;
+        int j = startSecondPart;
+        int k = 0;
+
+        while (i < startSecondPart && j < arr.length) {
+            if (arr[i] < arr[j]) {
+                arr[k++] = arr[i++];
+            } else {
+                arr[k++] = arr[j++];
+            }
         }
-        
+
+        while (i < startSecondPart) {
+            arr[k++] = arr[i++];
+        }
+
+        while (j < arr.length) {
+            arr[k++] = arr[j++];
+        }
+    }
+
+    // S7
+    public static int[] mergeArrays(int[] arr1, int[] arr2) {
+        int[] merged = new int[arr1.length + arr2.length];
+        int i = 0;
+        int j = 0;
+        int k = 0;
+
+        while (i < arr1.length && j < arr2.length) {
+            if (arr1[i] < arr2[j]) {
+                merged[k++] = arr1[i++];
+            } else {
+                merged[k++] = arr2[j++];
+            }
+        }
+
+        while (i < arr1.length) {
+            merged[k++] = arr1[i++];
+        }
+
+        while (j < arr2.length) {
+            merged[k++] = arr2[j++];
+        }
+
+        return merged;
+    }
+
+    // S6 Factorial Growth Function (n!)
+
+    // S5 Exponential Growth Function (2^n)
+
+    // S4
+    // n^3
+    // n^6
+    // n^3
+
+    // S3
+    // Multiply matrices function is cubic because there is a double for loop 
+    //      inside the method and witin the double for loop a dot product method is called which
+    //      in turn used another for loop. So there are three nested for loops which makes the time 
+    //      complexity O(n^3).
+    // Inverse of a matrix is also cubic because it uses Gaussian elimination which has a time complexity 
+    //      of O(n^3) due to the three nested loops in the algorithm.
+
+    // S2 - Linearithmic Growth Function (n log n) - Generate a Random String of Length n
+    public static double randomTest(int n) {
+        long startTime = System.nanoTime();
+        String result = random(n);
+        long endTime = System.nanoTime();
+
+        return (endTime - startTime) / 1e9;
+    }
+
+    private static String random(int n) {
+        if (n == 0) return "";
+        int r = StdRandom.uniform(26);
+        char c = 'a' + r;
+        return random(n/2) + c + random(n - n/2 - 1);
+    }
+
+    // S1 - Exponential Growth Function (2^n) 
+    public static double mystery3Test(int n) {
+        long[] arr = randomArray(n);
+        long startTime = System.nanoTime();
+        int result = mystery3(arr);
+        long endTime = System.nanoTime();
+
+        return (endTime - startTime) / 1e9;
+    }
+
+    private static int mystery3(long[] a) {
+        int n = a.length;
+        int count = 0;
+
+        for (int k = 1; k < (1 << n); k++)  {
+            long sum = 0;
+            for (int i = 0; i < n; i++)
+                if (((k >> i) & 1) == 1) sum = sum + a[i];
+            if (sum == 0)
+                count++;
+        }
+
+        return count;
     }
 
     // 4.1.39 - Factorial Growth Function (n!) - Permutations of a String
@@ -194,14 +303,15 @@ public class section {
     }
 
     private static int collectCoupons(int n) {
-        boolean[] isCollected = new boolean[n];
-        int count = 0, distinct = 0;
+        List<Boolean> isCollected = new ArrayList<>(n);
+        for (int i = 0; i < n; i++) isCollected.add(false);
+        int count = 0;
+        int distinct = 0;
         while (distinct < n) {
             int r = getCoupon(n);
             count++;
-            if (!isCollected[r])
-            distinct++;
-            isCollected[r] = true;
+            if (!isCollected.get(r)) distinct++;
+            isCollected.set(r, true);
         }
 
         return count;
