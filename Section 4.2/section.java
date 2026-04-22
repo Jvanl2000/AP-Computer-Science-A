@@ -3,12 +3,51 @@ import java.util.Arrays;
 public class section {
     public static void main(String[] arg) {
 
-        int[] A = new int[] {11, -3, 7, 0, 1, 0, -5, 13, 1};
+        int[] A = new int[] {11, -3, 7, 0, 1, 0, -5, 13, 1, 1};
 
         // System.out.println(NonrecursiveBinarySearch(new int[] {1, 2, 3, 4, 5}, 4));
         // System.out.println(FullBinarySearch(new int[] {0, 1, 2, 3, 4, 4, 5}, 4));
         // TraceInsertionSort(A);
         // NonrecursiveMergeSort(A);
+        // System.out.println(median(A));
+        // System.out.println(mode(A));
+        
+    }
+
+    // 4.2.21
+    public static int mode(int[] a) {
+        int[] copy = Arrays.copyOf(a, a.length);
+        NonrecursiveMergeSort(copy);
+        int mode = copy[0];
+        int count = 1;
+        int maxCount = 1;
+        for (int i = 1; i < copy.length; i++) {
+            if (copy[i] == copy[i - 1]) {
+                count++;
+            } else {
+                if (count > maxCount) {
+                    maxCount = count;
+                    mode = copy[i - 1];
+                }
+                count = 1;
+            }
+        }
+        if (count > maxCount) {
+            mode = copy[copy.length - 1];
+        }
+        return mode;
+    }
+
+    // 4.2.20
+    public static int median(int[] a) {
+        int[] copy = Arrays.copyOf(a, a.length);
+        NonrecursiveMergeSort(copy);
+        int n = copy.length;
+        if (n % 2 == 1) {
+            return copy[n / 2];
+        } else {
+            return (copy[n / 2 - 1] + copy[n / 2]) / 2;
+        }
     }
 
     // 4.2.16
