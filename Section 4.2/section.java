@@ -4,6 +4,11 @@ public class section {
     public static void main(String[] arg) {
 
         int[] A = new int[] {11, -3, 7, 0, 1, 0, -5, 13, 1, 1};
+        int[] B = new int[] {5, 99, 87, 15, 1, 1, 56, 58};
+        int[] C = new int[] {-5, -3, 0, 0, 1, 1, 1, 7, 11, 13};
+        int[] bitonic = new int[] {1, 3, 5, 6, 7, 4, 2, 0};
+        int[] majority = new int[] {1, 2, 3, 2, 2, 1, 2};
+        int[] partition = new int[] {9, 1, 8, 2, 7, 3, 6, 4, 5, 10, 0};
 
         // System.out.println(NonrecursiveBinarySearch(new int[] {1, 2, 3, 4, 5}, 4));
         // System.out.println(FullBinarySearch(new int[] {0, 1, 2, 3, 4, 4, 5}, 4));
@@ -11,7 +16,184 @@ public class section {
         // NonrecursiveMergeSort(A);
         // System.out.println(median(A));
         // System.out.println(mode(A));
+        // CountSort(B);
+        // System.out.println(floor(C, 10));
+        // System.out.println(ceiling(C, 10));
+        // System.out.println(bitonicPeak(bitonic));
+        // System.out.println(Arrays.toString(closestPair(bitonic)));
+        // System.out.println(Arrays.toString(furthestPair(bitonic)));
+        // System.out.println(majority(majority));
+        // partition(partition, 5);
+        // quickSort(partition); 
+    }
+    
+    // 4.2.35
+    public static void quickSort(int[] a) {
+        quickSort(a, 0, a.length);
+    }
+
+    private static void quickSort(int[] a, int l, int r) {
+        if (r - l <= 1) return;
+        int part = a[l];
+        int i = l + 1;
+        int j = r - 1;
         
+        while (i <= j) {
+            if (a[i] > part && a[j] <= part) {
+                exchange(a, i, j);
+                i++;
+                j--;
+            } else if (a[i] <= part) {
+                i++;
+            } else if (a[j] > part) {
+                j--;
+            }
+        }
+
+        exchange(a, l, j);
+        quickSort(a, l, j);
+        quickSort(a, j + 1, r);
+    }
+
+    // 4.2.33
+    public static void partition(int[] a, int part) {
+        int i = 0;
+        int j = a.length - 1;
+        while (i <= j) {
+            if (a[i] > part && a[j] <= part) {
+                exchange(a, i, j);
+                i++;
+                j--;
+            } else if (a[i] <= part) {
+                i++;
+            } else if (a[j] > part) {
+                j--;
+            }
+        }
+    }
+
+    // 4.2.30
+    public static int majority(int[] a) {
+        int count = 0;
+        int candidate = -1;
+        for (int value : a) {
+            if (count == 0) {
+                candidate = value;
+                count = 1;
+            } else if (value == candidate) {
+                count++;
+            } else {
+                count--;
+            }
+        }
+
+        return candidate;
+    }
+
+    // 4.2.27
+    public static int[] furthestPair(int[] a) {
+        int min = Integer.MAX_VALUE;
+        int max = Integer.MIN_VALUE;
+        int minIndex = -1;
+        int maxIndex = -1;
+        for (int i = 0; i < a.length; i++) {
+            if (a[i] < min) {
+                min = a[i];
+                minIndex = i;
+            }
+            if (a[i] > max) {
+                max = a[i];
+                maxIndex = i; 
+            }
+        }
+
+        return new int[] {minIndex, maxIndex};
+    }
+
+    // 4.2.26
+    public static int[] closestPair(int[] a) {
+        int[] copy = Arrays.copyOf(a, a.length);
+        NonrecursiveMergeSort(copy);
+        int minDiff = Integer.MAX_VALUE;
+        int[] result = new int[2];
+        for (int i = 1; i < copy.length; i++) {
+            int diff = copy[i] - copy[i - 1];
+            if (diff < minDiff) {
+                minDiff = diff;
+                result[0] = i - 1;
+                result[1] = i;
+            }
+        }
+
+        return result;
+    }
+
+    // 4.2.24
+    public static int bitonicPeak(int[] a) {
+        int left = 0;
+        int right = a.length - 1;
+        while (left <= right) {
+            int mid = (int) ((left + right) / 2);
+            if (mid > 0 && mid < a.length - 1) {
+                if (a[mid] > a[mid - 1] && a[mid] > a[mid + 1]) {
+                    return mid;
+                } else if (a[mid] < a[mid - 1]) {
+                    right = mid - 1;
+                } else {
+                    left = mid + 1;
+                }
+            } else if (mid == 0) {
+                return a[0] > a[1] ? 0 : 1;
+            } else {
+                return a[a.length - 1] > a[a.length - 2] ? a.length - 1 : a.length - 2;
+            }
+        }
+        return -1;
+    }
+
+    // 4.2.23
+    public static int ceiling(int[] a, int value) {
+        int left = 0;
+        int right = a.length - 1;
+        int result = -1;
+        while (left <= right) {
+            int mid = (int) ((left + right) / 2);
+            if (a[mid] <= value) {
+                result = mid;
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+
+        return result;
+    }
+
+    public static int floor(int[] a, int value) {
+        int left = 0;
+        int right = a.length - 1;
+        int result = -1;
+        while (left <= right) {
+            int mid = (int) ((left + right) / 2);
+            if (a[mid] > value) {
+                result = mid;
+                right = mid - 1;
+            } else {
+                left = mid + 1;
+            }
+        }
+
+        return result;
+    }
+
+    // 4.2.22
+    public static void CountSort(int[] a) {
+        int[] counts = new int[100];
+        for (int value : a) counts[value] = counts[value] + 1;
+        for (int i = 0; i < counts.length; i++)
+            for (int j = 0; j < counts[i]; j++)
+                System.out.print(i + " ");
+        System.out.println();
     }
 
     // 4.2.21
@@ -72,23 +254,23 @@ public class section {
     }
 
     // 4.2.15
-    public static void SubInsertionSort(Comparable[] a, int l, int r) { 
+    public static void SubInsertionSort(int[] a, int l, int r) { 
         for (int i = l + 1; i < r; i++)
             for (int j = i; j > l; j--)
-                if (a[j].compareTo(a[j-1]) < 0)
+                if (a[j] < a[j-1])
                     exchange(a, j-1, j);
             else break;
     }
 
-    private static void exchange(Comparable[] a, int i, int j) { 
-        Comparable temp = a[j]; a[j] = a[i]; a[i] = temp; 
+    private static void exchange(int[] a, int i, int j) { 
+        int temp = a[j]; a[j] = a[i]; a[i] = temp; 
     }
 
-    public static void SubMergeSort(Comparable[] a, int l, int r) {
-        Comparable[] aux = new Comparable[a.length];
+    public static void SubMergeSort(int [] a, int l, int r) {
+        int[] aux = new int[a.length];
         SubMergeSort(a, aux, l, r);
     }
-    private static void SubMergeSort(Comparable[] a, Comparable[] aux, int l, int r) {
+    private static void SubMergeSort(int[] a, int[] aux, int l, int r) {
         if (r - l <= 1) return;
         int mid = l + (r-l)/2;
         SubMergeSort(a, aux, l, mid);
@@ -97,7 +279,7 @@ public class section {
         for (int k = l; k < r; k++)
         if (i == mid) aux[k] = a[j++];
         else if (j == r) aux[k] = a[i++];
-        else if (a[j].compareTo(a[i]) < 0) aux[k] = a[j++];
+        else if (a[j] < a[i]) aux[k] = a[j++];
         else aux[k] = a[i++];
         for (int k = l; k < r; k++)
         a[k] = aux[k];
