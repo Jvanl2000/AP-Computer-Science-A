@@ -7,8 +7,9 @@ public class section {
         int[] B = new int[] {5, 99, 87, 15, 1, 1, 56, 58};
         int[] C = new int[] {-5, -3, 0, 0, 1, 1, 1, 7, 11, 13};
         int[] bitonic = new int[] {1, 3, 5, 6, 7, 4, 2, 0};
-        int[] majority = new int[] {1, 2, 3, 2, 2, 1, 2};
-        int[] partition = new int[] {9, 1, 8, 2, 7, 3, 6, 4, 5, 10, 0};
+        int[] majority = new int[] {1, 2, 3, 2, 2, 2, 1};
+        int[] partition = new int[] {0, 1, 1, 0, 1, 0, 0, 1, 0, 1};
+        int[] indexIsValue = new int[] {-3, -1, 1, 2, 4, 9, 11, 18, 19, 90};
 
         // System.out.println(NonrecursiveBinarySearch(new int[] {1, 2, 3, 4, 5}, 4));
         // System.out.println(FullBinarySearch(new int[] {0, 1, 2, 3, 4, 4, 5}, 4));
@@ -23,10 +24,54 @@ public class section {
         // System.out.println(Arrays.toString(closestPair(bitonic)));
         // System.out.println(Arrays.toString(furthestPair(bitonic)));
         // System.out.println(majority(majority));
-        // partition(partition, 5);
+        // partition(partition);
         // quickSort(partition); 
+        // System.out.println(indexIsValue(indexIsValue));
+        // System.out.println(Arrays.toString(sumExits(indexIsValue, 15)));
     }
     
+    
+
+    
+    // S7
+    // Linear
+
+    // S6
+    public static int[] sumExits(int[] a, int target) {
+        int left = 0;
+        int right = a.length - 1;
+        while (left < right) {
+            int sum = a[left] + a[right];
+            if (sum < target) {
+                left++;
+            } else if (sum > target) {
+                right--;
+            } else {
+                return new int[] {left, right};
+            }
+        }
+
+        return new int[] {-1, -1};
+    }
+
+    // S5
+    public static int indexIsValue(int[] a) {
+        int left = 0;
+        int right = a.length - 1;
+        while (left <= right) {
+            int mid = (int) ((left + right) / 2);
+            if (a[mid] < mid) {
+                left = mid + 1;
+            } else if (a[mid] > mid) {
+                right = mid - 1;
+            } else {
+                return mid;
+            }
+        }
+
+        return -1;
+    }
+
     // 4.2.35
     public static void quickSort(int[] a) {
         quickSort(a, 0, a.length);
@@ -56,17 +101,23 @@ public class section {
     }
 
     // 4.2.33
-    public static void partition(int[] a, int part) {
+    public static void partition(int[] a) {
+        int[] indecies = furthestPair(a);
+        int small = a[indecies[0]];
+        int large = a[indecies[1]];
         int i = 0;
         int j = a.length - 1;
         while (i <= j) {
-            if (a[i] > part && a[j] <= part) {
-                exchange(a, i, j);
+            if (a[i] == small && a[j] == large) {
                 i++;
                 j--;
-            } else if (a[i] <= part) {
+            } else if (a[i] == small && a[j] == small) {
                 i++;
-            } else if (a[j] > part) {
+            } else if (a[i] == large && a[j] == large) {
+                j--;
+            } else {
+                exchange(a, i, j);
+                i++;
                 j--;
             }
         }
@@ -148,6 +199,7 @@ public class section {
                 return a[a.length - 1] > a[a.length - 2] ? a.length - 1 : a.length - 2;
             }
         }
+
         return -1;
     }
 
