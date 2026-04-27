@@ -1,10 +1,9 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 
-public class InsertionSort {
+public class MergeSort {
     
-    public static final int N = 20;
+    public static final int N = 100;
     public static final int DELAY = 250;
 
     private static void sleep(int ms) {
@@ -31,10 +30,16 @@ public class InsertionSort {
         }
     }
 
-    private static void exchange(int[] a, int i, int j) {
-        int temp = a[i];
-        a[i] = a[j];
-        a[j] = temp;
+    private static void merge(int[] a, int[] aux, int l, int mid, int r) {
+        for (int k = l; k < r; k++)
+            aux[k] = a[k];
+        int i = l;
+        int j = mid;
+        for (int k = l; k < r; k++)
+        if (i == mid) a[k] = aux[j++];
+        else if (j == r) a[k] = aux[i++];
+        else if (aux[j] < aux[i]) a[k] = aux[j++];
+        else a[k] = aux[i++];
     }
 
     private static void drawFrame(int[] a, int swapOne, int swapTwo) {
@@ -67,16 +72,17 @@ public class InsertionSort {
         int swapTwo = -1;
 
         drawFrame(array, swapOne, swapTwo);
-        for (int i = 1; i < array.length; i++) {
-            int key = array[i];
-            int j = i - 1;
-            while (j >= 0 && array[j] > key) {
-                swapOne = j;
-                swapTwo = j + 1;
-                exchange(array, j, j + 1);
+    
+
+        int[] aux = new int[N];
+        for (int sz = 1; sz < N; sz *= 2) {
+            for (int l = 0; l < N - sz; l += 2 * sz) {
+                int mid = l + sz;
+                merge(array, aux, l, mid, Math.min(l + (2 * sz), N));
+                swapOne = mid - 1;
+                swapTwo = mid;
                 drawFrame(array, swapOne, swapTwo);
                 sleep(DELAY);
-                j--;
             }
         }
 
