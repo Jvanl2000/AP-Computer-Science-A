@@ -30,7 +30,14 @@ public class section {
         // System.out.println(Arrays.toString(sumExits(indexIsValue, 15)));
     }
     
-    
+    // S10
+    // Worst Case Senario: Quadratic if every pation is maximally unbalanced
+    //     ex. Sorted (or reverse sorted) array
+    // Best Case Senario: Linearithmic if every partition is perfectly balanced
+    //     ex. Random array with no duplicates
+
+    // S9
+    // You can add a sorted check at the beginning of the unoverloaded method
 
     
     // S7
