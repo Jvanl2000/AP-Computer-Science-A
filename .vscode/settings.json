@@ -12,5 +12,6 @@
     "**/.github": true,
     "**/.devcontainer": true,
     "**/.vscode": true
-  }
+  },
+  "java.debug.settings.onBuildFailureProceed": true
 }
